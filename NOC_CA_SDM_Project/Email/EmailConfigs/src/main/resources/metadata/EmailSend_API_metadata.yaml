@@ -1,0 +1,11 @@
+---
+key: "EmailSend_API-1.0.0"
+name : "EmailSend_API"
+displayName : "EmailSend_API"
+description: "Sample API"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/Email"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false
+apiId : "null"

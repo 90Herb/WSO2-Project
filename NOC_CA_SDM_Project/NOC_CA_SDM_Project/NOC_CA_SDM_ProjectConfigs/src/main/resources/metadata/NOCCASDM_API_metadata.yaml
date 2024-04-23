@@ -1,0 +1,11 @@
+---
+key: "NOCCASDM_API-1.0.0"
+name : "NOCCASDM_API"
+displayName : "NOCCASDM_API"
+description: "Sample API"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/SDM"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false
+apiId : "null"

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<esb:EsbDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:esb="http:///org/wso2/integrationstudio/eclipse/gmf/esb">
+  <server type="SEQUENCE">
+    <children xsi:type="esb:Sequences" name="DataMapping_SQ">
+      <outputConnector>
+        <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.0/@inputConnector"/>
+      </outputConnector>
+      <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.3/@outputConnector/@outgoingLink"/>
+      <mediatorFlow>
+        <children xsi:type="esb:PropertyMediator" propertyName="messageType" propertyScope="axis2" value="application/json">
+          <inputConnector incomingLinks="//@server/@children.0/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.1/@inputConnector"/>
+          </outputConnector>
+          <valueExpression prettyName="Property Expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078" supportJsonPaths="true"/>
+        </children>
+        <children xsi:type="esb:ScriptMediator" description="set data length" scriptType="INLINE" scriptBody="var qbResponse = mc.getPayloadJSON();&#xA;&#x9;               &#x9;&#x9;var preBody = [];&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var log = mc.getServiceLog();&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var qb_syncdatetime = mc.getProperty('qb_syncdatetime');&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var SdmReference = mc.getProperty('Sdm_reference');&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var affectedUser = mc.getProperty('affectedUser');&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var lut = []; for (var i=0; i&lt;256; i++) { lut[i] = (i&lt;16?'0':'')+(i).toString(16); };&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;log.info('PAGE_SIZE ' + JSON.stringify(qbResponse.data.length));&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;function guid(){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    var d0 = Math.random()*0xffffffff|0;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    var d1 = Math.random()*0xffffffff|0;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    var d2 = Math.random()*0xffffffff|0;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    var d3 = Math.random()*0xffffffff|0;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    return lut[d0&amp;0xff]+lut[d0>>8&amp;0xff]+lut[d0>>16&amp;0xff]+lut[d0>>24&amp;0xff]+'-'+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    lut[d1&amp;0xff]+lut[d1>>8&amp;0xff]+'-'+lut[d1>>16&amp;0x0f|0x40]+lut[d1>>24&amp;0xff]+'-'+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    lut[d2&amp;0x3f|0x80]+lut[d2>>8&amp;0xff]+'-'+lut[d2>>16&amp;0xff]+lut[d2>>24&amp;0xff]+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    lut[d3&amp;0xff]+lut[d3>>8&amp;0xff]+lut[d3>>16&amp;0xff]+lut[d3>>24&amp;0xff];&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;for(var i = 0; i &lt; qbResponse.data.length; i++){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;preBody.push(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;{&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;chg_parent&quot;:SdmReference,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;qb_childid&quot;: (qbResponse.data[i][3][&quot;value&quot;] === &quot;&quot; || qbResponse.data[i][3][&quot;value&quot;] === null ? null : qbResponse.data[i][3][&quot;value&quot;]),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;qb_parentid&quot;: (qbResponse.data[i][8][&quot;value&quot;] === &quot;&quot; || qbResponse.data[i][8][&quot;value&quot;] === null ? null : qbResponse.data[i][8][&quot;value&quot;]),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;resource_name&quot;: (qbResponse.data[i][9][&quot;value&quot;] === &quot;&quot; || qbResponse.data[i][9][&quot;value&quot;] === null ? null : qbResponse.data[i][9][&quot;value&quot;]),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;qb_syncdatetime&quot;:qb_syncdatetime,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;rowguid&quot;:guid()&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;};&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;mc.setPayloadJSON(preBody);">
+          <scriptDynamicKey prettyName="" propertyName="dynamic key" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.2/@inputConnector"/>
+          </outputConnector>
+          <scriptStaticKey prettyName="Script Key" keyName="key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+        </children>
+        <children xsi:type="esb:LogMediator" logSeparator=", ">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.1/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.3/@inputConnector"/>
+          </outputConnector>
+          <properties propertyName="JSON-Payload" propertyValueType="EXPRESSION" propertyValue="">
+            <propertyExpression propertyValue="json-eval($)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+          </properties>
+        </children>
+        <children xsi:type="esb:PropertyMediator" valueType="EXPRESSION" newPropertyName="chg_parent">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.2/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@inputConnector"/>
+          </outputConnector>
+          <valueExpression propertyValue="json-eval($[0].chg_parent)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078" supportJsonPaths="true"/>
+        </children>
+      </mediatorFlow>
+      <onError prettyName="OnError sequence Key" keyName="OnError sequence Key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+    </children>
+  </server>
+</esb:EsbDiagram>
