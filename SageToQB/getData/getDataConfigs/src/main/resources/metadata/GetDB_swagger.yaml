@@ -1,0 +1,13 @@
+openapi: 3.0.1
+info:
+  title: GetDB
+  description: API Definition of GetDB
+  version: 1.0.0
+servers:
+- url: http://localhost:8290/db
+paths:
+  /accessBuild:
+    get:
+      responses:
+        default:
+          description: Default response

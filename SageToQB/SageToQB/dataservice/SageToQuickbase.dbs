@@ -1,0 +1,65 @@
+<data enableBatchRequests="true" transports="http https" serviceGroup="" serviceNamespace="" name="SageToQuickbase">
+  <description>Fetching AccessBuildDetails</description>
+  <resource method="GET" path="accessBuild">
+    <description />
+    <call-query href="QueryAccessBuilSites" />
+  </resource>
+  <query useConfig="AccessBuild" id="QueryAccessBuilSites">
+    <sql><![CDATA[SELECT
+  Access_AccessBuildID AS Access_ID,
+  access_Site_Name,
+  dfar_Name AS access_dfaregion,
+  access_DFABuildingNr,
+  access_Site_Address,
+  access_Site_Latitude,
+  access_Site_Longitude,
+  access_infrastructureid,
+  Comp_IdCust,
+  access_QuickBaseRecordID,
+  Case
+    when access_accessownership = 'Option1' then 'DFA'
+    when access_accessownership = 'Option2' then 'Client'
+    when access_accessownership = 'Option3' then 'Client'
+    when access_accessownership = 'Option4' then 'DFA'
+  END AS [Ownership],
+  Case
+    when access_accessownership = 'Option1' then 'DFA'
+    when access_accessownership = 'Option2' then 'Client'
+    when access_accessownership = 'Option3' then 'DFA'
+    when access_accessownership = 'Option4' then 'Client'
+  END AS [Build Company]
+FROM
+  AccessBuild
+  LEFT JOIN Company WITH (NOLOCK) ON Company.Comp_CompanyId = AccessBuild.Access_CompanyId
+AND Comp_Deleted IS NULL
+LEFT OUTER JOIN DFARegion WITH (NOLOCK) ON AccessBuild.access_dfaregion = DFARegion.dfar_DFARegionID
+WHERE access_Deleted IS NULL
+AND Access_UpdatedDate < GETDATE() - 60]]></sql>
+    <result outputType="json">{
+  "results": {
+    "result": [
+      {
+        "Access_ID": "$Access_ID",
+        "access_Site_Name": "$access_Site_Name",
+        "access_dfaregion": "$access_dfaregion",
+        "access_DFABuildingNr": "$access_DFABuildingNr",
+        "access_Site_Address": "$access_Site_Address",
+        "access_Site_Latitude": "$access_Site_Latitude",
+        "access_Site_Longitude": "$access_Site_Longitude",
+        "Ownership": "$Ownership",
+        "Build_Company": "$Build Company",
+        "access_infrastructureid": "$access_infrastructureid",
+        "Comp_IdCust": "$Comp_IdCust",
+        "access_QuickBaseRecordID": "$access_QuickBaseRecordID"
+      }
+    ]
+  }
+}</result>
+  </query>
+  <config id="AccessBuild">
+    <property name="driverClassName">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+    <property name="url">jdbc:sqlserver://DFASQL-UAT01:1433;databaseName=DFACRM_UAT01</property>
+    <property name="username">Herbert.Mafabatho</property>
+    <property name="password">b4z4r39P58z9</property>
+  </config>
+</data>

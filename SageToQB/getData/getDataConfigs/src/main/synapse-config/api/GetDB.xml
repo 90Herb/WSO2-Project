@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/db" name="GetDB" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" protocol="http" url-mapping="/accessBuild">
+        <inSequence>
+            <call>
+                <endpoint key="GetDatabase_API"/>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
