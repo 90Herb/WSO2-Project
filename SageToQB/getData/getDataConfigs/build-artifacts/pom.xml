@@ -18,5 +18,6 @@
     <module>metadata/GetDB_swagger</module>
     <module>metadata/GetDB_metadata</module>
     <module>endpoints/GetDatabase_API</module>
+    <module>sequences/DataMapping_SQ</module>
   </modules>
 </project>

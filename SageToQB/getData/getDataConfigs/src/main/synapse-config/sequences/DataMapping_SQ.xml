@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="DataMapping_SQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <iterate expression="//results/result">
+        <target>
+            <sequence>
+                <property expression="//results/result/access_dfaregion" name="access_dfaregion" scope="default" type="STRING"/>
+            </sequence>
+        </target>
+    </iterate>
+</sequence>

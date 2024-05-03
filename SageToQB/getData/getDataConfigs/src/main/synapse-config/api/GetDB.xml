@@ -5,6 +5,65 @@
             <call>
                 <endpoint key="GetDatabase_API"/>
             </call>
+            <!-- <script description="DataMapping" language="js"><![CDATA[var log = mc.getServiceLog();
+            		var DBpayload = mc.getPayloadJSON();
+				    var res = DBpayload.results.result;
+				    var Access_dfaregion = DBpayload.results.result[1].access_dfaregion;
+				    var array=[]; 
+				    log.warn(JSON.stringify(DBpayload));
+					log.info('Access_dfaregion ' + JSON.stringify(Access_dfaregion));
+					log.info('Page sIZE ' + JSON.stringify(res.length));
+				    
+				    for(var i = 0; i < res.length; i++){
+							array.push(
+								{							
+									"348": DBpayload.results.result[i].access_dfaregion
+								}
+							);
+						};				
+					mc.setPayloadJSON();]]></script> -->
+            <foreach expression="json-eval($.results.result)" id="foreach_1">
+                <sequence>
+                    <payloadFactory description="Data mapping" media-type="json">
+                        <format>{
+                            "3" : "$1", 
+				            "6" : "$2",
+				            "7" : "$3",
+				            "68": "$4",
+				            "92": "$5",
+				            "93": "$6", 
+				            "153": "$7",
+				            "154": "$8",
+				            "282": "$9", 
+				            "348": "$10",
+				            "479": "$11",
+				            "524": "$12"
+                            }
+                  </format>
+                        <args>
+                            <arg evaluator="json" expression="$.access_QuickBaseRecordID"/>
+                            <arg evaluator="json" expression="$.Access_ID"/>
+                            <arg evaluator="json" expression="$.access_DFABuildingNr"/>
+                            <arg evaluator="json" expression="$.access_Site_Name"/>
+                            <arg evaluator="json" expression="$.access_Site_Latitude"/>
+                            <arg evaluator="json" expression="$.access_Site_Longitude"/>
+                            <arg evaluator="json" expression="$.Ownership"/>
+                            <arg evaluator="json" expression="$.Build_Company"/>
+                            <arg evaluator="json" expression="$.access_Site_Address"/>
+                            <arg evaluator="json" expression="$.access_dfaregion"/>
+                            <arg evaluator="json" expression="$.access_infrastructureid"/>
+                            <arg evaluator="json" expression="$.Comp_IdCust"/>
+                        </args>
+                    </payloadFactory>
+                    <log level="full">
+                        <property name="MESSAGE1" value="ENDLOOP"/>
+                    </log>
+                </sequence>
+            </foreach>
+            <property name="newArray" scope="default" type="STRING" value=""/>
+            <log description="AUDIT_ENTRY" level="custom" separator=",">
+                <property expression="json-eval($.results.result[0].access_dfaregion)" name="access_dfaregion"/>
+            </log>
             <respond/>
         </inSequence>
         <outSequence/>

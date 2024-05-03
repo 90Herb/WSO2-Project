@@ -11,4 +11,7 @@
     <artifact name="GetDatabase_API" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/endpoints/GetDatabase_API.xml</file>
     </artifact>
+    <artifact name="DataMapping_SQ" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/DataMapping_SQ.xml</file>
+    </artifact>
 </artifacts>
