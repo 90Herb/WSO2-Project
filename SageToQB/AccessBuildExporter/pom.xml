@@ -9,10 +9,45 @@
   <name>AccessBuildExporter</name>
   <description>AccessBuildExporter</description>
   <properties>
+    <com.example.metadata_._GetDB_swagger>capp/EnterpriseServiceBus</com.example.metadata_._GetDB_swagger>
+    <com.example.api_._GetDB>capp/EnterpriseServiceBus</com.example.api_._GetDB>
+    <com.example.sequence_._DataMapping_SQ>capp/EnterpriseServiceBus</com.example.sequence_._DataMapping_SQ>
+    <com.example.metadata_._GetDB_metadata>capp/EnterpriseServiceBus</com.example.metadata_._GetDB_metadata>
+    <com.example.endpoint_._GetDatabase_API>capp/EnterpriseServiceBus</com.example.endpoint_._GetDatabase_API>
     <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,service/rule=aar,synapse/message-store=xml,event/stream=json,service/meta=xml,datasource/datasource=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,wso2/gadget=dar,synapse/api=xml,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,synapse/metadata=yaml,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
     <com.sage.quickbase.dataservice.dataservice_._SageToQuickbase>capp/DataServicesServer</com.sage.quickbase.dataservice.dataservice_._SageToQuickbase>
   </properties>
   <dependencies>
+    <dependency>
+      <groupId>com.example.metadata</groupId>
+      <artifactId>GetDB_swagger</artifactId>
+      <version>1.0.0</version>
+      <type>yaml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.api</groupId>
+      <artifactId>GetDB</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.sequence</groupId>
+      <artifactId>DataMapping_SQ</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.metadata</groupId>
+      <artifactId>GetDB_metadata</artifactId>
+      <version>1.0.0</version>
+      <type>yaml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>GetDatabase_API</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
     <dependency>
       <groupId>com.sage.quickbase.dataservice.dataservice</groupId>
       <artifactId>SageToQuickbase</artifactId>

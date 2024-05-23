@@ -5,41 +5,27 @@
             <call>
                 <endpoint key="GetDatabase_API"/>
             </call>
-            <!-- <script description="DataMapping" language="js"><![CDATA[var log = mc.getServiceLog();
-            		var DBpayload = mc.getPayloadJSON();
-				    var res = DBpayload.results.result;
-				    var Access_dfaregion = DBpayload.results.result[1].access_dfaregion;
-				    var array=[]; 
-				    log.warn(JSON.stringify(DBpayload));
-					log.info('Access_dfaregion ' + JSON.stringify(Access_dfaregion));
-					log.info('Page sIZE ' + JSON.stringify(res.length));
-				    
-				    for(var i = 0; i < res.length; i++){
-							array.push(
-								{							
-									"348": DBpayload.results.result[i].access_dfaregion
-								}
-							);
-						};				
-					mc.setPayloadJSON();]]></script> -->
+            <enrich>
+                <source clone="false" xpath="json-eval($.results.result[?(@.access_QuickBaseRecordID==null)].access_QuickBaseRecordID,$.results.result[?(@.access_Site_Latitude==null)].access_Site_Latitude,$.results.result[?(@.access_Site_Longitude==null)].access_Site_Longitude,$.results.result[?(@.access_DFABuildingNr==null)].access_DFABuildingNr,$.results.result[?(@.Ownership==null)].Ownership,$.results.result[?(@.Build_Company==null)].Build_Company,$.results.result[?(@.access_Site_Address==null)].access_Site_Address,$.results.result[?(@.access_dfaregion==null)].access_dfaregion)"/>
+                <target action="remove" type="body"/>
+            </enrich>
             <foreach expression="json-eval($.results.result)" id="foreach_1">
                 <sequence>
                     <payloadFactory description="Data mapping" media-type="json">
                         <format>{
-                            "3" : "$1", 
-				            "6" : "$2",
-				            "7" : "$3",
-				            "68": "$4",
-				            "92": "$5",
-				            "93": "$6", 
-				            "153": "$7",
-				            "154": "$8",
-				            "282": "$9", 
-				            "348": "$10",
-				            "479": "$11",
+                            "3" :"$1",
+				            "6" :"$2",
+				            "7" :"$3",
+				            "68":"$4",
+				            "92":"$5",
+				            "93":"$6",
+				            "153":"$7",
+				            "154":"$8",
+				            "282":"$9",
+				            "348":"$10",
+				            "479":"$11",
 				            "524": "$12"
-                            }
-                  </format>
+				   }</format>
                         <args>
                             <arg evaluator="json" expression="$.access_QuickBaseRecordID"/>
                             <arg evaluator="json" expression="$.Access_ID"/>
@@ -51,19 +37,65 @@
                             <arg evaluator="json" expression="$.Build_Company"/>
                             <arg evaluator="json" expression="$.access_Site_Address"/>
                             <arg evaluator="json" expression="$.access_dfaregion"/>
-                            <arg evaluator="json" expression="$.access_infrastructureid"/>
+                            <arg evaluator="json" expression="$.ccess_infrastructureid"/>
                             <arg evaluator="json" expression="$.Comp_IdCust"/>
                         </args>
                     </payloadFactory>
-                    <log level="full">
-                        <property name="MESSAGE1" value="ENDLOOP"/>
-                    </log>
                 </sequence>
             </foreach>
-            <property name="newArray" scope="default" type="STRING" value=""/>
+            <enrich>
+                <source clone="false" xpath="json-eval($.results.result[?(@.3=='')].3,$.results.result[?(@.92=='')].92,$.results.result[?(@.93=='')].93,$.results.result[?(@.7=='')].7,$.results.result[?(@.153=='')].153,$.results.result[?(@.154=='')].154,$.results.result[?(@.282=='')].282,$.results.result[?(@.348=='')].348)"/>
+                <target action="remove" type="body"/>
+            </enrich>
+            <!--<enrich>
+                <source clone="false" xpath="json-eval($.results.result[?(@.access_QuickBaseRecordID==null)].access_QuickBaseRecordID,$.results.result[?(@.access_Site_Latitude==null)],$.results.result[?(@.access_Site_Latitude=='')].access_Site_Latitude,$.results.result[?(@.access_DFABuildingNr==null)].access_DFABuildingNr,$.results.result[?(@.Ownership==null)].Ownership,$.results.result[?(@.access_Site_Address==null)].access_Site_Address,$.results.result[?(@.Comp_IdCust==null)].Comp_IdCust,$.results.result[?(@.access_Site_Longitude==null)],$.results.result[?(@.access_Site_Longitude=='')].access_Site_Longitude)"/>
+                <target action="remove" type="body"/>
+            </enrich>
+            <enrich>
+                <source clone="false" xpath="json-eval($.results.result[?(@.access_infrastructureid==null)].access_infrastructureid,$.results.result[?(@.access_dfaregion==null)].access_dfaregion,$.results.result[?(@.Build_Company==null)].Build_Company)"/>
+                <target action="remove" type="body"/>
+            </enrich>
+            
+            
+            <enrich>
+                <source clone="false" xpath="json-eval($.results.result[?(@.access_QuickBaseRecordID==null)].access_QuickBaseRecordID,$.results.result[?(@.access_Site_Latitude==null)],$.results.result[?(@.access_Site_Latitude=='')].access_Site_Latitude,$.results.result[?(@.access_DFABuildingNr==null)].access_DFABuildingNr,$.results.result[?(@.Ownership==null)].Ownership,$.results.result[?(@.access_Site_Address==null)].access_Site_Address,$.results.result[?(@.Comp_IdCust==null)].Comp_IdCust,$.results.result[?(@.access_Site_Longitude==null)],$.results.result[?(@.access_Site_Longitude=='')].access_Site_Longitude)"/>
+                <target action="remove" type="body"/>
+            </enrich>
+            <enrich>
+                <source clone="false" xpath="json-eval($.results.result[?(@.access_infrastructureid==null)].access_infrastructureid,$.results.result[?(@.access_dfaregion==null)].access_dfaregion,$.results.result[?(@.Build_Company==null)].Build_Company)"/>
+                <target action="remove" type="body"/>
+            </enrich>
+
+
+            <log description="AUDIT_EXIT" level="custom">
+                <property expression="json-eval($)" name="AUDIT_EXIT"/>
+            </log>
+            <propertyGroup>
+		        <property name="QB-Realm-Hostname" scope="transport" type="STRING" value="https://dfa.quickbase.com"/>
+		        <property name="ContentType" scope="axis2" type="STRING" value="application/json"/>
+		        <property name="Authorization" scope="transport" type="STRING" value="QB-USER-TOKEN b8w8tz_jx9j_0_fihzjpbeqy3macq4yw4gdwcznud"/>
+		    </propertyGroup>
+		    <call>
+		        <endpoint key="Quickbase_EP"/>
+		    </call>
+		    <log description="AuditReEntry" level="custom">
+		        <property expression="json-eval($)" name="audit.reEntry"/>
+		        <property expression="json-eval($.metadata.updatedRecordIds.length())" name="noUpdate"/>
+		        <property expression="json-eval($.metadata.unchangedRecordIds.length())" name="metadata"/>
+		        <property expression="json-eval($.data.length())" name="data1"/>
+		        <property expression="json-eval($.data.length())" name="data2"/>
+		    </log>
+		    
+		
+          
+            < <sequence key="CRMController_SQ"/>
+            <log description="AuditExit" level="custom">
+                <property expression="json-eval($)" name="audit.exit"/>
+            </log>-->
+            <!-- <property name="newArray" scope="default" type="STRING" value=""/>
             <log description="AUDIT_ENTRY" level="custom" separator=",">
                 <property expression="json-eval($.results.result[0].access_dfaregion)" name="access_dfaregion"/>
-            </log>
+            </log> -->
             <respond/>
         </inSequence>
         <outSequence/>

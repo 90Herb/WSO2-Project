@@ -14,4 +14,10 @@
     <artifact name="DataMapping_SQ" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/sequences/DataMapping_SQ.xml</file>
     </artifact>
+    <artifact name="Quickbase_EP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Quickbase_EP.xml</file>
+    </artifact>
+    <artifact name="CRMController_SQ" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/CRMController_SQ.xml</file>
+    </artifact>
 </artifacts>

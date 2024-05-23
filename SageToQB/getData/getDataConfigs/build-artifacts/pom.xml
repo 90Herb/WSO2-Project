@@ -19,5 +19,7 @@
     <module>metadata/GetDB_metadata</module>
     <module>endpoints/GetDatabase_API</module>
     <module>sequences/DataMapping_SQ</module>
+    <module>endpoints/Quickbase_EP</module>
+    <module>sequences/CRMController_SQ</module>
   </modules>
 </project>
