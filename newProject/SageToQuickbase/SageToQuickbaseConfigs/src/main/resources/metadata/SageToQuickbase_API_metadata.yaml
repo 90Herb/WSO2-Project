@@ -1,0 +1,11 @@
+---
+key: "SageToQuickbase_API-1.0.0"
+name : "SageToQuickbase_API"
+displayName : "SageToQuickbase_API"
+description: "Sample API"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/sageToQuickbase"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false
+apiId : "null"
