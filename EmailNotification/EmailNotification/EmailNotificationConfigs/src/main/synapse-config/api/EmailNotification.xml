@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/send" name="EmailNotification" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/EmailSend">
+        <inSequence>
+            <property description="SET MAILTO" expression="json-eval($.mailTo)" name="email" scope="default" type="STRING"/>
+            <property description="SET MAILTO" expression="json-eval($.emailSubject)" name="subject" scope="default" type="STRING"/>
+            <propertyGroup>
+                <property name="Content-Type" scope="axis2" type="STRING" value="application/json"/>
+                <property name="Authorization" scope="transport" type="STRING" value="CALiveAPICreator prdlDGcoAKrrkSyed9IDRK2:1"/>
+            </propertyGroup>
+            <property expression="fn:substring-before($ctx:email,'.')" name="user" scope="default" type="STRING"/>
+            <payloadFactory description="SET EMAIL CONTENT" media-type="xml">
+                <format>
+                    <mailBody><![CDATA[
+                         <p>Hi $3,<br /><br/>
+					        Please note that SageToQuickbase synced successfully.<br />
+					      <table> 
+					         <tr>
+					           <td>Admin<td>&nbsp;:&nbsp;</td><td>$1</td>
+					         </tr>
+					         <tr>
+					           <td>Subject<td>&nbsp;:&nbsp;</td><td>SageToQuickbase Sync</td>
+					         </tr>
+					        </table>Kind Regards
+					]]></mailBody>
+                </format>
+                <args>
+                    <arg evaluator="json" expression="$ctx:email"/>
+                    <arg evaluator="json" expression="$ctx:emailSubject"/>
+                    <arg evaluator="json" expression="$ctx:user"/>
+                </args>
+            </payloadFactory>
+            <payloadFactory description="SET EMAIL PAYLOAD" media-type="json">
+                <format>{&#xd;
+				    "mailTo": "$1",&#xd;
+				    "mailSubject": "SageToQuickbase Sync",
+				    "mailBody": "$2"
+				}</format>
+                <args>
+                    <arg evaluator="json" expression="$ctx:email"/>
+                    <arg evaluator="json" expression="$.mailBody"/>
+                </args>
+            </payloadFactory>
+            <call>
+                <endpoint key="Email_ED"/>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

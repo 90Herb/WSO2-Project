@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="EmailNotification" groupId="com.example.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/EmailNotification.xml</file>
+    </artifact>
+    <artifact name="EmailNotification_swagger" groupId="com.example.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/EmailNotification_swagger.yaml</file>
+    </artifact>
+    <artifact name="EmailNotification_metadata" groupId="com.example.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/EmailNotification_metadata.yaml</file>
+    </artifact>
+    <artifact name="Email_ED" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Email_ED.xml</file>
+    </artifact>
+</artifacts>
