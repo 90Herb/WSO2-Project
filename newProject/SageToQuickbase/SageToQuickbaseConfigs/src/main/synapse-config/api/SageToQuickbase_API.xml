@@ -56,7 +56,10 @@
                         	"to":"bs32tiwqq",
                             "data" :$1,
                             "fieldsToReturn":[
-                            	5
+                            	5,
+                            	2,
+                            	3,
+                            	9
                             ]
 				            
 				   }</format>
@@ -69,6 +72,7 @@
                 <source clone="false" xpath="json-eval($.results.result)"/>
                 <target type="body"/>
             </enrich> -->
+            <sequence key="QuickbaseAuth_SQ"/>
             <respond/>
         </inSequence>
         <outSequence/>

@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:esb="http:///org/wso2/integrationstudio/eclipse/gmf/esb" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmi:id="_T2NlUBzkEe-z2IGIJTPo_A" type="Esb" name="QuikbaseAuth_SQ" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_T3Eg8BzkEe-z2IGIJTPo_A" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_T3FIABzkEe-z2IGIJTPo_A" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_jLZmoBzkEe-z2IGIJTPo_A" type="3614">
+        <children xmi:type="notation:Node" xmi:id="_jLaNsBzkEe-z2IGIJTPo_A" type="3615">
+          <children xmi:type="notation:DecorationNode" xmi:id="_jLaNtRzkEe-z2IGIJTPo_A" type="7035">
+            <children xmi:type="notation:Node" xmi:id="_jLg7YBzkEe-z2IGIJTPo_A" type="3788">
+              <children xmi:type="notation:DecorationNode" xmi:id="_jLhicBzkEe-z2IGIJTPo_A" type="5215"/>
+              <children xmi:type="notation:Node" xmi:id="_jLshkBzkEe-z2IGIJTPo_A" type="3789">
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jLshkRzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jLshkhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jLshkxzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:PropertyGroupMediatorInputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.0/@inputConnector"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jLshlBzkEe-z2IGIJTPo_A" x="-6" y="-5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_jLshlRzkEe-z2IGIJTPo_A" type="3790">
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jLshlhzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jLshlxzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jLshmBzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:PropertyGroupMediatorOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.0/@outputConnector"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jLshmRzkEe-z2IGIJTPo_A" x="64" y="-9"/>
+              </children>
+              <styles xmi:type="notation:DescriptionStyle" xmi:id="_jLg7YRzkEe-z2IGIJTPo_A"/>
+              <styles xmi:type="notation:FontStyle" xmi:id="_jLg7YhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+              <styles xmi:type="notation:LineStyle" xmi:id="_jLg7YxzkEe-z2IGIJTPo_A"/>
+              <element xmi:type="esb:PropertyGroupMediator" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.0"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jLg7ZBzkEe-z2IGIJTPo_A" x="25" y="89" width="84" height="115"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_jMbhYBzkEe-z2IGIJTPo_A" type="3742">
+              <children xmi:type="notation:Node" xmi:id="_jMcvgBzkEe-z2IGIJTPo_A" type="3743">
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jMcvgRzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jMcvghzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jMcvgxzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:CallMediatorInputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.1/@inputConnector"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jMcvhBzkEe-z2IGIJTPo_A" x="-6" y="-5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_jMcvhRzkEe-z2IGIJTPo_A" type="3744">
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jMcvhhzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jMcvhxzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jMcviBzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:CallMediatorOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.1/@outputConnector"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jMcviRzkEe-z2IGIJTPo_A" x="-11" y="-9"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_jMcvihzkEe-z2IGIJTPo_A" type="3745">
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jMcvixzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jMcvjBzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jMcvjRzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:CallMediatorEndpointOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.1/@endpointOutputConnector"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jMcvjhzkEe-z2IGIJTPo_A"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_jMdWkBzkEe-z2IGIJTPo_A" type="3746">
+                <children xmi:type="notation:DecorationNode" xmi:id="_jMdWlRzkEe-z2IGIJTPo_A" type="7047">
+                  <children xmi:type="notation:Node" xmi:id="_jMhA8BzkEe-z2IGIJTPo_A" type="3660">
+                    <children xmi:type="notation:DecorationNode" xmi:id="_jMhA9RzkEe-z2IGIJTPo_A" type="5165"/>
+                    <children xmi:type="notation:Node" xmi:id="_jMjdMBzkEe-z2IGIJTPo_A" type="3661">
+                      <styles xmi:type="notation:DescriptionStyle" xmi:id="_jMjdMRzkEe-z2IGIJTPo_A"/>
+                      <styles xmi:type="notation:FontStyle" xmi:id="_jMjdMhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                      <styles xmi:type="notation:LineStyle" xmi:id="_jMjdMxzkEe-z2IGIJTPo_A"/>
+                      <element xmi:type="esb:NamedEndpointInputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.1/@mediatorFlow/@children.0/@inputConnector"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jMjdNBzkEe-z2IGIJTPo_A"/>
+                    </children>
+                    <styles xmi:type="notation:DescriptionStyle" xmi:id="_jMhA8RzkEe-z2IGIJTPo_A"/>
+                    <styles xmi:type="notation:FontStyle" xmi:id="_jMhA8hzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                    <styles xmi:type="notation:LineStyle" xmi:id="_jMhA8xzkEe-z2IGIJTPo_A"/>
+                    <element xmi:type="esb:NamedEndpoint" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.1/@mediatorFlow/@children.0"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jMhA9BzkEe-z2IGIJTPo_A" x="96" y="80"/>
+                  </children>
+                  <styles xmi:type="notation:TitleStyle" xmi:id="_jMdWlhzkEe-z2IGIJTPo_A" showTitle="true"/>
+                </children>
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jMdWkRzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jMdWkhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jMdWkxzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:MediatorFlow" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.1/@mediatorFlow"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jMdWlBzkEe-z2IGIJTPo_A"/>
+              </children>
+              <styles xmi:type="notation:DescriptionStyle" xmi:id="_jMbhYRzkEe-z2IGIJTPo_A"/>
+              <styles xmi:type="notation:FontStyle" xmi:id="_jMbhYhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+              <styles xmi:type="notation:LineStyle" xmi:id="_jMbhYxzkEe-z2IGIJTPo_A"/>
+              <element xmi:type="esb:CallMediator" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.1"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jMbhZBzkEe-z2IGIJTPo_A" x="149" y="89" width="170" height="100"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_jMnuoBzkEe-z2IGIJTPo_A" type="3495">
+              <children xmi:type="notation:DecorationNode" xmi:id="_jMoVsBzkEe-z2IGIJTPo_A" type="5168"/>
+              <children xmi:type="notation:Node" xmi:id="_jMyGsBzkEe-z2IGIJTPo_A" type="3018">
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jMyGsRzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jMyGshzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jMyGsxzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:LogMediatorInputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.2/@inputConnector"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jMyGtBzkEe-z2IGIJTPo_A" x="-6" y="-5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_jMyGtRzkEe-z2IGIJTPo_A" type="3019">
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jMyGthzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jMyGtxzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jMyGuBzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:LogMediatorOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.2/@outputConnector"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jMyGuRzkEe-z2IGIJTPo_A" x="64" y="-9"/>
+              </children>
+              <styles xmi:type="notation:DescriptionStyle" xmi:id="_jMnuoRzkEe-z2IGIJTPo_A"/>
+              <styles xmi:type="notation:FontStyle" xmi:id="_jMnuohzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+              <styles xmi:type="notation:LineStyle" xmi:id="_jMnuoxzkEe-z2IGIJTPo_A"/>
+              <element xmi:type="esb:LogMediator" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.2"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jMnupBzkEe-z2IGIJTPo_A" x="359" y="89" width="84" height="115"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_jM_iEBzkEe-z2IGIJTPo_A" type="3494">
+              <children xmi:type="notation:DecorationNode" xmi:id="_jNAJIBzkEe-z2IGIJTPo_A" type="5129"/>
+              <children xmi:type="notation:Node" xmi:id="_jNPZsBzkEe-z2IGIJTPo_A" type="3010">
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jNPZsRzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jNPZshzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jNPZsxzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:FilterMediatorInputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@inputConnector"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jNPZtBzkEe-z2IGIJTPo_A" x="-6" y="-5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_jNPZtRzkEe-z2IGIJTPo_A" type="3534">
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jNPZthzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jNPZtxzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jNPZuBzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:FilterMediatorOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@outputConnector"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jNPZuRzkEe-z2IGIJTPo_A"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_jNPZuhzkEe-z2IGIJTPo_A" type="3011">
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jNPZuxzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jNPZvBzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jNPZvRzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:FilterMediatorPassOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@passOutputConnector"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jNPZvhzkEe-z2IGIJTPo_A" x="80" y="-29"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_jNPZvxzkEe-z2IGIJTPo_A" type="3012">
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jNPZwBzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jNPZwRzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jNPZwhzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:FilterMediatorFailOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@failOutputConnector"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jNPZwxzkEe-z2IGIJTPo_A" x="80" y="11"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_jNQAwBzkEe-z2IGIJTPo_A" type="3531">
+                <children xmi:type="notation:Node" xmi:id="_jNcOABzkEe-z2IGIJTPo_A" type="3535">
+                  <children xmi:type="notation:Node" xmi:id="_jNfRUBzkEe-z2IGIJTPo_A" type="3536">
+                    <children xmi:type="notation:DecorationNode" xmi:id="_jNfRVRzkEe-z2IGIJTPo_A" type="7022">
+                      <children xmi:type="notation:Node" xmi:id="_jOFHMBzkEe-z2IGIJTPo_A" type="3495">
+                        <children xmi:type="notation:DecorationNode" xmi:id="_jOFHNRzkEe-z2IGIJTPo_A" type="5168"/>
+                        <children xmi:type="notation:Node" xmi:id="_jOIKgBzkEe-z2IGIJTPo_A" type="3018">
+                          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOIKgRzkEe-z2IGIJTPo_A"/>
+                          <styles xmi:type="notation:FontStyle" xmi:id="_jOIKghzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                          <styles xmi:type="notation:LineStyle" xmi:id="_jOIKgxzkEe-z2IGIJTPo_A"/>
+                          <element xmi:type="esb:LogMediatorInputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.0/@inputConnector"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOIKhBzkEe-z2IGIJTPo_A" x="-6" y="-5"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_jOIKhRzkEe-z2IGIJTPo_A" type="3019">
+                          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOIKhhzkEe-z2IGIJTPo_A"/>
+                          <styles xmi:type="notation:FontStyle" xmi:id="_jOIKhxzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                          <styles xmi:type="notation:LineStyle" xmi:id="_jOIKiBzkEe-z2IGIJTPo_A"/>
+                          <element xmi:type="esb:LogMediatorOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.0/@outputConnector"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOIKiRzkEe-z2IGIJTPo_A" x="64" y="-9"/>
+                        </children>
+                        <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOFHMRzkEe-z2IGIJTPo_A"/>
+                        <styles xmi:type="notation:FontStyle" xmi:id="_jOFHMhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                        <styles xmi:type="notation:LineStyle" xmi:id="_jOFHMxzkEe-z2IGIJTPo_A"/>
+                        <element xmi:type="esb:LogMediator" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.0"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOFHNBzkEe-z2IGIJTPo_A" x="25" y="10" width="84" height="115"/>
+                      </children>
+                      <children xmi:type="notation:Node" xmi:id="_jOMb8BzkEe-z2IGIJTPo_A" type="3508">
+                        <children xmi:type="notation:DecorationNode" xmi:id="_jOMb9RzkEe-z2IGIJTPo_A" type="5175"/>
+                        <children xmi:type="notation:Node" xmi:id="_jOZQQBzkEe-z2IGIJTPo_A" type="3064">
+                          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOZQQRzkEe-z2IGIJTPo_A"/>
+                          <styles xmi:type="notation:FontStyle" xmi:id="_jOZQQhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                          <styles xmi:type="notation:LineStyle" xmi:id="_jOZQQxzkEe-z2IGIJTPo_A"/>
+                          <element xmi:type="esb:ScriptMediatorInputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.1/@inputConnector"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOZQRBzkEe-z2IGIJTPo_A" x="-6" y="-5"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_jOZQRRzkEe-z2IGIJTPo_A" type="3065">
+                          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOZQRhzkEe-z2IGIJTPo_A"/>
+                          <styles xmi:type="notation:FontStyle" xmi:id="_jOZQRxzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                          <styles xmi:type="notation:LineStyle" xmi:id="_jOZQSBzkEe-z2IGIJTPo_A"/>
+                          <element xmi:type="esb:ScriptMediatorOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.1/@outputConnector"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOZQSRzkEe-z2IGIJTPo_A" x="64" y="-9"/>
+                        </children>
+                        <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOMb8RzkEe-z2IGIJTPo_A"/>
+                        <styles xmi:type="notation:FontStyle" xmi:id="_jOMb8hzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                        <styles xmi:type="notation:LineStyle" xmi:id="_jOMb8xzkEe-z2IGIJTPo_A"/>
+                        <element xmi:type="esb:ScriptMediator" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.1"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOMb9BzkEe-z2IGIJTPo_A" x="149" y="10" width="84" height="115"/>
+                      </children>
+                      <children xmi:type="notation:Node" xmi:id="_jOjBQBzkEe-z2IGIJTPo_A" type="3495">
+                        <children xmi:type="notation:DecorationNode" xmi:id="_jOjBRRzkEe-z2IGIJTPo_A" type="5168"/>
+                        <children xmi:type="notation:Node" xmi:id="_jOmroBzkEe-z2IGIJTPo_A" type="3018">
+                          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOmroRzkEe-z2IGIJTPo_A"/>
+                          <styles xmi:type="notation:FontStyle" xmi:id="_jOmrohzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                          <styles xmi:type="notation:LineStyle" xmi:id="_jOmroxzkEe-z2IGIJTPo_A"/>
+                          <element xmi:type="esb:LogMediatorInputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.2/@inputConnector"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOmrpBzkEe-z2IGIJTPo_A" x="-6" y="-5"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_jOnSsBzkEe-z2IGIJTPo_A" type="3019">
+                          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOnSsRzkEe-z2IGIJTPo_A"/>
+                          <styles xmi:type="notation:FontStyle" xmi:id="_jOnSshzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                          <styles xmi:type="notation:LineStyle" xmi:id="_jOnSsxzkEe-z2IGIJTPo_A"/>
+                          <element xmi:type="esb:LogMediatorOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.2/@outputConnector"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOnStBzkEe-z2IGIJTPo_A" x="64" y="-9"/>
+                        </children>
+                        <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOjBQRzkEe-z2IGIJTPo_A"/>
+                        <styles xmi:type="notation:FontStyle" xmi:id="_jOjBQhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                        <styles xmi:type="notation:LineStyle" xmi:id="_jOjBQxzkEe-z2IGIJTPo_A"/>
+                        <element xmi:type="esb:LogMediator" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.2"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOjBRBzkEe-z2IGIJTPo_A" x="273" y="10" width="84" height="115"/>
+                      </children>
+                      <children xmi:type="notation:Node" xmi:id="_jOq9EBzkEe-z2IGIJTPo_A" type="3597">
+                        <children xmi:type="notation:DecorationNode" xmi:id="_jOq9FRzkEe-z2IGIJTPo_A" type="5191"/>
+                        <children xmi:type="notation:Node" xmi:id="_jOsyQBzkEe-z2IGIJTPo_A" type="3598">
+                          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOsyQRzkEe-z2IGIJTPo_A"/>
+                          <styles xmi:type="notation:FontStyle" xmi:id="_jOsyQhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                          <styles xmi:type="notation:LineStyle" xmi:id="_jOsyQxzkEe-z2IGIJTPo_A"/>
+                          <element xmi:type="esb:PayloadFactoryMediatorInputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.3/@inputConnector"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOsyRBzkEe-z2IGIJTPo_A" x="-6" y="-5"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_jOsyRRzkEe-z2IGIJTPo_A" type="3599">
+                          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOsyRhzkEe-z2IGIJTPo_A"/>
+                          <styles xmi:type="notation:FontStyle" xmi:id="_jOsyRxzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                          <styles xmi:type="notation:LineStyle" xmi:id="_jOsySBzkEe-z2IGIJTPo_A"/>
+                          <element xmi:type="esb:PayloadFactoryMediatorOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.3/@outputConnector"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOsySRzkEe-z2IGIJTPo_A" x="64" y="-9"/>
+                        </children>
+                        <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOq9ERzkEe-z2IGIJTPo_A"/>
+                        <styles xmi:type="notation:FontStyle" xmi:id="_jOq9EhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                        <styles xmi:type="notation:LineStyle" xmi:id="_jOq9ExzkEe-z2IGIJTPo_A"/>
+                        <element xmi:type="esb:PayloadFactoryMediator" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.3"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOq9FBzkEe-z2IGIJTPo_A" x="397" y="10" width="84" height="115"/>
+                      </children>
+                      <children xmi:type="notation:Node" xmi:id="_jOwcoBzkEe-z2IGIJTPo_A" type="3492">
+                        <children xmi:type="notation:DecorationNode" xmi:id="_jOwcpRzkEe-z2IGIJTPo_A" type="5167"/>
+                        <children xmi:type="notation:Node" xmi:id="_jOyR0BzkEe-z2IGIJTPo_A" type="3033">
+                          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOyR0RzkEe-z2IGIJTPo_A"/>
+                          <styles xmi:type="notation:FontStyle" xmi:id="_jOyR0hzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                          <styles xmi:type="notation:LineStyle" xmi:id="_jOyR0xzkEe-z2IGIJTPo_A"/>
+                          <element xmi:type="esb:PropertyMediatorInputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.4/@inputConnector"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOyR1BzkEe-z2IGIJTPo_A" x="-6" y="-5"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_jOyR1RzkEe-z2IGIJTPo_A" type="3034">
+                          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOyR1hzkEe-z2IGIJTPo_A"/>
+                          <styles xmi:type="notation:FontStyle" xmi:id="_jOyR1xzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                          <styles xmi:type="notation:LineStyle" xmi:id="_jOyR2BzkEe-z2IGIJTPo_A"/>
+                          <element xmi:type="esb:PropertyMediatorOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.4/@outputConnector"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOyR2RzkEe-z2IGIJTPo_A" x="64" y="-9"/>
+                        </children>
+                        <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOwcoRzkEe-z2IGIJTPo_A"/>
+                        <styles xmi:type="notation:FontStyle" xmi:id="_jOwcohzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                        <styles xmi:type="notation:LineStyle" xmi:id="_jOwcoxzkEe-z2IGIJTPo_A"/>
+                        <element xmi:type="esb:PropertyMediator" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.4"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOwcpBzkEe-z2IGIJTPo_A" x="521" y="10" width="84" height="115"/>
+                      </children>
+                      <styles xmi:type="notation:TitleStyle" xmi:id="_jNfRVhzkEe-z2IGIJTPo_A" showTitle="true"/>
+                    </children>
+                    <styles xmi:type="notation:DescriptionStyle" xmi:id="_jNfRURzkEe-z2IGIJTPo_A"/>
+                    <styles xmi:type="notation:FontStyle" xmi:id="_jNfRUhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                    <styles xmi:type="notation:LineStyle" xmi:id="_jNfRUxzkEe-z2IGIJTPo_A"/>
+                    <element xmi:type="esb:MediatorFlow" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jNfRVBzkEe-z2IGIJTPo_A"/>
+                  </children>
+                  <styles xmi:type="notation:DescriptionStyle" xmi:id="_jNcOARzkEe-z2IGIJTPo_A"/>
+                  <styles xmi:type="notation:FontStyle" xmi:id="_jNcOAhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                  <styles xmi:type="notation:LineStyle" xmi:id="_jNcOAxzkEe-z2IGIJTPo_A"/>
+                  <element xmi:type="esb:FilterPassContainer" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jNcOBBzkEe-z2IGIJTPo_A"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_jNcOBRzkEe-z2IGIJTPo_A" type="3537">
+                  <children xmi:type="notation:Node" xmi:id="_jNn0MBzkEe-z2IGIJTPo_A" type="3538">
+                    <children xmi:type="notation:DecorationNode" xmi:id="_jNobRBzkEe-z2IGIJTPo_A" type="7023">
+                      <children xmi:type="notation:Node" xmi:id="_jN458BzkEe-z2IGIJTPo_A" type="3495">
+                        <children xmi:type="notation:DecorationNode" xmi:id="_jN459RzkEe-z2IGIJTPo_A" type="5168"/>
+                        <children xmi:type="notation:Node" xmi:id="_jN79QBzkEe-z2IGIJTPo_A" type="3018">
+                          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jN79QRzkEe-z2IGIJTPo_A"/>
+                          <styles xmi:type="notation:FontStyle" xmi:id="_jN79QhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                          <styles xmi:type="notation:LineStyle" xmi:id="_jN79QxzkEe-z2IGIJTPo_A"/>
+                          <element xmi:type="esb:LogMediatorInputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@failContainer/@mediatorFlow/@children.0/@inputConnector"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jN79RBzkEe-z2IGIJTPo_A" x="-6" y="-5"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_jN79RRzkEe-z2IGIJTPo_A" type="3019">
+                          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jN79RhzkEe-z2IGIJTPo_A"/>
+                          <styles xmi:type="notation:FontStyle" xmi:id="_jN79RxzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                          <styles xmi:type="notation:LineStyle" xmi:id="_jN79SBzkEe-z2IGIJTPo_A"/>
+                          <element xmi:type="esb:LogMediatorOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@failContainer/@mediatorFlow/@children.0/@outputConnector"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jN79SRzkEe-z2IGIJTPo_A" x="64" y="-9"/>
+                        </children>
+                        <styles xmi:type="notation:DescriptionStyle" xmi:id="_jN458RzkEe-z2IGIJTPo_A"/>
+                        <styles xmi:type="notation:FontStyle" xmi:id="_jN458hzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                        <styles xmi:type="notation:LineStyle" xmi:id="_jN458xzkEe-z2IGIJTPo_A"/>
+                        <element xmi:type="esb:LogMediator" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@failContainer/@mediatorFlow/@children.0"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jN459BzkEe-z2IGIJTPo_A" x="25" y="10" width="84" height="115"/>
+                      </children>
+                      <children xmi:type="notation:Node" xmi:id="_jN_AkBzkEe-z2IGIJTPo_A" type="3597">
+                        <children xmi:type="notation:DecorationNode" xmi:id="_jN_noBzkEe-z2IGIJTPo_A" type="5191"/>
+                        <children xmi:type="notation:Node" xmi:id="_jOBc0BzkEe-z2IGIJTPo_A" type="3598">
+                          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOBc0RzkEe-z2IGIJTPo_A"/>
+                          <styles xmi:type="notation:FontStyle" xmi:id="_jOBc0hzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                          <styles xmi:type="notation:LineStyle" xmi:id="_jOBc0xzkEe-z2IGIJTPo_A"/>
+                          <element xmi:type="esb:PayloadFactoryMediatorInputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@failContainer/@mediatorFlow/@children.1/@inputConnector"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOBc1BzkEe-z2IGIJTPo_A" x="-6" y="-5"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_jOCD4BzkEe-z2IGIJTPo_A" type="3599">
+                          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jOCD4RzkEe-z2IGIJTPo_A"/>
+                          <styles xmi:type="notation:FontStyle" xmi:id="_jOCD4hzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                          <styles xmi:type="notation:LineStyle" xmi:id="_jOCD4xzkEe-z2IGIJTPo_A"/>
+                          <element xmi:type="esb:PayloadFactoryMediatorOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@failContainer/@mediatorFlow/@children.1/@outputConnector"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jOCD5BzkEe-z2IGIJTPo_A" x="64" y="-9"/>
+                        </children>
+                        <styles xmi:type="notation:DescriptionStyle" xmi:id="_jN_AkRzkEe-z2IGIJTPo_A"/>
+                        <styles xmi:type="notation:FontStyle" xmi:id="_jN_AkhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                        <styles xmi:type="notation:LineStyle" xmi:id="_jN_AkxzkEe-z2IGIJTPo_A"/>
+                        <element xmi:type="esb:PayloadFactoryMediator" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@failContainer/@mediatorFlow/@children.1"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jN_AlBzkEe-z2IGIJTPo_A" x="149" y="10" width="84" height="115"/>
+                      </children>
+                      <styles xmi:type="notation:TitleStyle" xmi:id="_jNobRRzkEe-z2IGIJTPo_A" showTitle="true"/>
+                    </children>
+                    <styles xmi:type="notation:DescriptionStyle" xmi:id="_jNobQBzkEe-z2IGIJTPo_A"/>
+                    <styles xmi:type="notation:FontStyle" xmi:id="_jNobQRzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                    <styles xmi:type="notation:LineStyle" xmi:id="_jNobQhzkEe-z2IGIJTPo_A"/>
+                    <element xmi:type="esb:MediatorFlow" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@failContainer/@mediatorFlow"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jNobQxzkEe-z2IGIJTPo_A"/>
+                  </children>
+                  <styles xmi:type="notation:DescriptionStyle" xmi:id="_jNcOBhzkEe-z2IGIJTPo_A"/>
+                  <styles xmi:type="notation:FontStyle" xmi:id="_jNcOBxzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                  <styles xmi:type="notation:LineStyle" xmi:id="_jNcOCBzkEe-z2IGIJTPo_A"/>
+                  <element xmi:type="esb:FilterFailContainer" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@failContainer"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jNcOCRzkEe-z2IGIJTPo_A"/>
+                </children>
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jNQAwRzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jNQAwhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jNQAwxzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:FilterContainer" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jNQAxBzkEe-z2IGIJTPo_A"/>
+              </children>
+              <styles xmi:type="notation:DescriptionStyle" xmi:id="_jM_iERzkEe-z2IGIJTPo_A"/>
+              <styles xmi:type="notation:FontStyle" xmi:id="_jM_iEhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+              <styles xmi:type="notation:LineStyle" xmi:id="_jM_iExzkEe-z2IGIJTPo_A"/>
+              <element xmi:type="esb:FilterMediator" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jM_iFBzkEe-z2IGIJTPo_A" x="483" y="89" width="170" height="130"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_jO18MBzkEe-z2IGIJTPo_A" type="3739">
+              <children xmi:type="notation:DecorationNode" xmi:id="_jO18NRzkEe-z2IGIJTPo_A" type="5209"/>
+              <children xmi:type="notation:Node" xmi:id="_jO4YcBzkEe-z2IGIJTPo_A" type="3740">
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jO4YcRzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jO4YchzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jO4YcxzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:RespondMediatorInputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.4/@inputConnector"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jO4YdBzkEe-z2IGIJTPo_A" x="-6" y="-5"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_jO4YdRzkEe-z2IGIJTPo_A" type="3741">
+                <styles xmi:type="notation:DescriptionStyle" xmi:id="_jO4YdhzkEe-z2IGIJTPo_A"/>
+                <styles xmi:type="notation:FontStyle" xmi:id="_jO4YdxzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+                <styles xmi:type="notation:LineStyle" xmi:id="_jO4YeBzkEe-z2IGIJTPo_A"/>
+                <element xmi:type="esb:RespondMediatorOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.4/@outputConnector"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jO4YeRzkEe-z2IGIJTPo_A" x="64" y="-9"/>
+              </children>
+              <styles xmi:type="notation:DescriptionStyle" xmi:id="_jO18MRzkEe-z2IGIJTPo_A"/>
+              <styles xmi:type="notation:FontStyle" xmi:id="_jO18MhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+              <styles xmi:type="notation:LineStyle" xmi:id="_jO18MxzkEe-z2IGIJTPo_A"/>
+              <element xmi:type="esb:RespondMediator" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.4"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jO18NBzkEe-z2IGIJTPo_A" x="1218" y="89" width="84" height="115"/>
+            </children>
+            <styles xmi:type="notation:TitleStyle" xmi:id="_jLaNthzkEe-z2IGIJTPo_A" showTitle="true"/>
+          </children>
+          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jLaNsRzkEe-z2IGIJTPo_A"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_jLaNshzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+          <styles xmi:type="notation:LineStyle" xmi:id="_jLaNsxzkEe-z2IGIJTPo_A"/>
+          <element xmi:type="esb:MediatorFlow" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jLaNtBzkEe-z2IGIJTPo_A"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_jLaNtxzkEe-z2IGIJTPo_A" type="3616">
+          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jLaNuBzkEe-z2IGIJTPo_A"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_jLaNuRzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+          <styles xmi:type="notation:LineStyle" xmi:id="_jLaNuhzkEe-z2IGIJTPo_A"/>
+          <element xmi:type="esb:SequencesInputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@inputConnector"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jLaNuxzkEe-z2IGIJTPo_A" x="-11" y="-9"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_jLaNvBzkEe-z2IGIJTPo_A" type="3617">
+          <styles xmi:type="notation:DescriptionStyle" xmi:id="_jLaNvRzkEe-z2IGIJTPo_A"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_jLaNvhzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+          <styles xmi:type="notation:LineStyle" xmi:id="_jLaNvxzkEe-z2IGIJTPo_A"/>
+          <element xmi:type="esb:SequencesOutputConnector" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@outputConnector"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jLaNwBzkEe-z2IGIJTPo_A" x="-11" y="-9"/>
+        </children>
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_jLZmoRzkEe-z2IGIJTPo_A"/>
+        <styles xmi:type="notation:FontStyle" xmi:id="_jLZmohzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+        <styles xmi:type="notation:LineStyle" xmi:id="_jLZmoxzkEe-z2IGIJTPo_A"/>
+        <element xmi:type="esb:Sequences" href="QuikbaseAuth_SQ.esb#//@server/@children.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jLZmpBzkEe-z2IGIJTPo_A" width="195" height="125"/>
+      </children>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_T3Eg8RzkEe-z2IGIJTPo_A"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_T3Eg8hzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <styles xmi:type="notation:LineStyle" xmi:id="_T3Eg8xzkEe-z2IGIJTPo_A"/>
+    <element xmi:type="esb:EsbServer" href="QuikbaseAuth_SQ.esb#//@server"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_T3Eg9BzkEe-z2IGIJTPo_A"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_T2NlURzkEe-z2IGIJTPo_A"/>
+  <element xmi:type="esb:EsbDiagram" href="QuikbaseAuth_SQ.esb#/"/>
+  <edges xmi:type="notation:Connector" xmi:id="_jPAUQBzkEe-z2IGIJTPo_A" type="4001" source="_jNPZvxzkEe-z2IGIJTPo_A" target="_jN79QBzkEe-z2IGIJTPo_A" roundedBendpointsRadius="5" routing="Rectilinear">
+    <styles xmi:type="notation:FontStyle" xmi:id="_jPAUQRzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <element xmi:type="esb:EsbLink" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@failOutputConnector/@outgoingLink"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jPAUQhzkEe-z2IGIJTPo_A" points="[11, -3, -5, 0]$[10, 0, -6, 3]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_jPCJcBzkEe-z2IGIJTPo_A" type="4001" source="_jN79RRzkEe-z2IGIJTPo_A" target="_jOBc0BzkEe-z2IGIJTPo_A" roundedBendpointsRadius="5" routing="Rectilinear">
+    <styles xmi:type="notation:FontStyle" xmi:id="_jPCJcRzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <element xmi:type="esb:EsbLink" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@failContainer/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jPCJchzkEe-z2IGIJTPo_A" points="[-11, 0, 69, 0]$[-74, 0, 6, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_jPDXkBzkEe-z2IGIJTPo_A" type="4001" source="_jNPZuhzkEe-z2IGIJTPo_A" target="_jOIKgBzkEe-z2IGIJTPo_A" roundedBendpointsRadius="5" routing="Rectilinear">
+    <styles xmi:type="notation:FontStyle" xmi:id="_jPDXkRzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <element xmi:type="esb:EsbLink" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@passOutputConnector/@outgoingLink"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jPDXkhzkEe-z2IGIJTPo_A" points="[11, -3, -5, 0]$[10, 0, -6, 3]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_jPFMwBzkEe-z2IGIJTPo_A" type="4001" source="_jOIKhRzkEe-z2IGIJTPo_A" target="_jOZQQBzkEe-z2IGIJTPo_A" roundedBendpointsRadius="5" routing="Rectilinear">
+    <styles xmi:type="notation:FontStyle" xmi:id="_jPFMwRzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <element xmi:type="esb:EsbLink" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jPFMwhzkEe-z2IGIJTPo_A" points="[-11, 0, 69, 0]$[-74, 0, 6, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_jPIQEBzkEe-z2IGIJTPo_A" type="4001" source="_jOZQRRzkEe-z2IGIJTPo_A" target="_jOmroBzkEe-z2IGIJTPo_A" roundedBendpointsRadius="5" routing="Rectilinear">
+    <styles xmi:type="notation:FontStyle" xmi:id="_jPIQERzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <element xmi:type="esb:EsbLink" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.1/@outputConnector/@outgoingLink"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jPIQEhzkEe-z2IGIJTPo_A" points="[-11, 0, 69, 0]$[-74, 0, 6, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_jPKsUBzkEe-z2IGIJTPo_A" type="4001" source="_jOnSsBzkEe-z2IGIJTPo_A" target="_jOsyQBzkEe-z2IGIJTPo_A" roundedBendpointsRadius="5" routing="Rectilinear">
+    <styles xmi:type="notation:FontStyle" xmi:id="_jPKsURzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <element xmi:type="esb:EsbLink" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.2/@outputConnector/@outgoingLink"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jPKsUhzkEe-z2IGIJTPo_A" points="[-11, 0, 69, 0]$[-74, 0, 6, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_jPNIkBzkEe-z2IGIJTPo_A" type="4001" source="_jOsyRRzkEe-z2IGIJTPo_A" target="_jOyR0BzkEe-z2IGIJTPo_A" roundedBendpointsRadius="5" routing="Rectilinear">
+    <styles xmi:type="notation:FontStyle" xmi:id="_jPNIkRzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <element xmi:type="esb:EsbLink" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.3/@outputConnector/@outgoingLink"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jPNIkhzkEe-z2IGIJTPo_A" points="[-11, 0, 69, 0]$[-74, 0, 6, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_jPPk0BzkEe-z2IGIJTPo_A" type="4001" source="_jLaNvBzkEe-z2IGIJTPo_A" target="_jLshkBzkEe-z2IGIJTPo_A" roundedBendpointsRadius="5" routing="Rectilinear">
+    <styles xmi:type="notation:FontStyle" xmi:id="_jPPk0RzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <element xmi:type="esb:EsbLink" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@outputConnector/@outgoingLink"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jPPk0hzkEe-z2IGIJTPo_A" points="[6, 9, 0, -1]$[0, 5, -6, -5]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_jPSBEBzkEe-z2IGIJTPo_A" type="4001" source="_jLshlRzkEe-z2IGIJTPo_A" target="_jMcvgBzkEe-z2IGIJTPo_A" roundedBendpointsRadius="5" routing="Rectilinear">
+    <styles xmi:type="notation:FontStyle" xmi:id="_jPSBERzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <element xmi:type="esb:EsbLink" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jPSBEhzkEe-z2IGIJTPo_A" points="[-11, 0, 69, 0]$[-74, 0, 6, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_jPUdUBzkEe-z2IGIJTPo_A" type="4001" source="_jMcvhRzkEe-z2IGIJTPo_A" target="_jMyGsBzkEe-z2IGIJTPo_A" roundedBendpointsRadius="5" routing="Rectilinear">
+    <styles xmi:type="notation:FontStyle" xmi:id="_jPUdURzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <element xmi:type="esb:EsbLink" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.1/@outputConnector/@outgoingLink"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jPUdUhzkEe-z2IGIJTPo_A" points="[-11, 0, -6, 0]$[1, 0, 6, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_jPW5kBzkEe-z2IGIJTPo_A" type="4001" source="_jMyGtRzkEe-z2IGIJTPo_A" target="_jNPZsBzkEe-z2IGIJTPo_A" roundedBendpointsRadius="5" routing="Rectilinear">
+    <styles xmi:type="notation:FontStyle" xmi:id="_jPW5kRzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <element xmi:type="esb:EsbLink" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.2/@outputConnector/@outgoingLink"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jPW5khzkEe-z2IGIJTPo_A" points="[-11, 0, 69, 0]$[-74, 0, 6, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_jPYuwBzkEe-z2IGIJTPo_A" type="4001" source="_jNPZtRzkEe-z2IGIJTPo_A" target="_jO4YcBzkEe-z2IGIJTPo_A" roundedBendpointsRadius="5" routing="Rectilinear">
+    <styles xmi:type="notation:FontStyle" xmi:id="_jPYuwRzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <element xmi:type="esb:EsbLink" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.3/@outputConnector/@outgoingLink"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jPYuwhzkEe-z2IGIJTPo_A" points="[-11, 0, 0, 0]$[-5, 0, 6, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_jPaj8BzkEe-z2IGIJTPo_A" type="4001" source="_jO4YdRzkEe-z2IGIJTPo_A" target="_jLaNtxzkEe-z2IGIJTPo_A" roundedBendpointsRadius="5" routing="Rectilinear">
+    <styles xmi:type="notation:FontStyle" xmi:id="_jPaj8RzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <element xmi:type="esb:EsbLink" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.4/@outputConnector/@outgoingLink"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jPaj8hzkEe-z2IGIJTPo_A" points="[-11, -2, 65, 8]$[-65, -9, 11, 1]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_jP328BzkEe-z2IGIJTPo_A" type="4001" source="_jMcvihzkEe-z2IGIJTPo_A" target="_jMjdMBzkEe-z2IGIJTPo_A" roundedBendpointsRadius="5" routing="Rectilinear">
+    <styles xmi:type="notation:FontStyle" xmi:id="_jP328RzkEe-z2IGIJTPo_A" fontName="Segoe UI"/>
+    <element xmi:type="esb:EsbLink" href="QuikbaseAuth_SQ.esb#//@server/@children.0/@mediatorFlow/@children.1/@endpointOutputConnector/@outgoingLink"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jP328hzkEe-z2IGIJTPo_A" points="[11, 8, -113, -88]$[117, 91, -7, -5]"/>
+  </edges>
+</notation:Diagram>

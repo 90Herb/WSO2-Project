@@ -18,5 +18,7 @@
     <module>metadata/SageToQuickbase_API_swagger</module>
     <module>metadata/SageToQuickbase_API_metadata</module>
     <module>endpoints/GetSageDatabase</module>
+    <module>endpoints/Quickbase_EP</module>
+    <module>tasks/InjectSageToQuickbaseApiTask</module>
   </modules>
 </project>

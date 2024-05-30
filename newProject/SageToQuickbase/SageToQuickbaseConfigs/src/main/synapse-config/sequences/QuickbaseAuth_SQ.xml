@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="QuickbaseAuth_SQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <propertyGroup>
+        <property name="QB-Realm-Hostname" scope="transport" type="STRING" value="https://dfa.quickbase.com"/>
+        <property name="ContentType" scope="axis2" type="STRING" value="application/json"/>
+        <property name="Authorization" scope="transport" type="STRING" value="QB-USER-TOKEN b8w8tz_jx9j_0_fihzjpbeqy3macq4yw4gdwcznud"/>
+    </propertyGroup>
+    <call>
+        <endpoint key="Quickbase_EP"/>
+    </call>
+    <log description="AuditReEntry" level="custom">
+        <property expression="json-eval($)" name="audit.reEntry"/>
+        <property expression="json-eval($.metadata.updatedRecordIds.length())" name="noUpdate"/>
+        <property expression="json-eval($.metadata.unchangedRecordIds.length())" name="metadata"/>
+        <property expression="json-eval($.data.length())" name="data1"/>
+        <property expression="json-eval($.data.length())" name="data2"/>
+    </log>
+    <filter description="Not Updated" regex="0" source="json-eval($.metadata.updatedRecordIds.length())">
+        <then>
+            <log description="No Records Updated" level="custom">
+                <property name="log.info" value="No records updated"/>
+            </log>
+            <script description="get error message" language="js"><![CDATA[var payload = mc.getPayloadJSON();
+var log = mc.getServiceLog();
+log.info("***getting into script***");
+log.info("payloadX: "+ JSON.stringify(payload.metadata.lineErrors));
+var error;
+if (payload.metadata.lineErrors){
+error = payload.metadata.lineErrors[1][0];
+}else{
+error = "No records were updated";
+}
+log.info("errorMsg: "+JSON.stringify(error));
+mc.setProperty("errorResponse",error)]]></script>
+            <log level="full">
+                <property expression="$ctx:errorResponse" name="log.info"/>
+                <property expression="get-property('errorResponse')" name="error"/>
+            </log>
+            <payloadFactory media-type="json">
+                <format>{
+"resultCode": -1,
+"resultMessage": "$1"
+}</format>
+                <args>
+                    <arg evaluator="xml" expression="$ctx:errorResponse"/>
+                </args>
+            </payloadFactory>
+            <property name="HTTP_SC" scope="axis2" type="STRING" value="400"/>
+        </then>
+        <else>
+            <log description="Records Updated" level="custom">
+                <property name="log.info" value="records updated"/>
+            </log>
+            <payloadFactory media-type="json">
+                <format>{
+"resultCode": 0,
+"resultMessage": "successful",
+"qbRecordId":"$1"
+}</format>
+                <args>
+                    <arg evaluator="json" expression="$.data[1].3.value"/>
+                </args>
+            </payloadFactory>
+        </else>
+    </filter>
+    <loopback/>
+</sequence>
