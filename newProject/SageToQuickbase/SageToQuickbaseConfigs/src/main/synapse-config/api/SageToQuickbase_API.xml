@@ -6,7 +6,7 @@
                 <endpoint key="GetSageDatabase"/>
             </call>
             <enrich>
-                <source clone="false" xpath="json-eval($.results.result[?(@.access_QuickBaseRecordID==null)].access_QuickBaseRecordID,$.results.result[?(@.access_Site_Latitude==null)].access_Site_Latitude,$.results.result[?(@.access_Site_Longitude==null)].access_Site_Longitude,$.results.result[?(@.access_DFABuildingNr==null)].access_DFABuildingNr,$.results.result[?(@.Ownership==null)].Ownership,$.results.result[?(@.Build_Company==null)].Build_Company,$.results.result[?(@.access_Site_Address==null)].access_Site_Address,$.results.result[?(@.access_dfaregion==null)].access_dfaregion,$.results.result[?(@.access_infrastructureid==null)].access_infrastructureid)"/>
+                <source clone="false" xpath="json-eval($.results.result[?(@.access_QuickBaseRecordID==null)].access_QuickBaseRecordID,$.results.result[?(@.access_infrastructureid==null)].access_infrastructureid,$.results.result[?(@.Build_Company==null)].Build_Company,$.results.result[?(@.access_DFABuildingNr==null)].access_DFABuildingNr,$.results.result[?(@.Ownership==null)].Ownership)"/>
                 <target action="remove" type="body"/>
             </enrich>
             <foreach expression="json-eval($.results.result)" id="foreach_1">
@@ -44,35 +44,104 @@
                 </sequence>
             </foreach>
             <enrich>
-                <source clone="false" xpath="json-eval($.results.result[?(@.3.value=='')].3,$.results.result[?(@.92.value=='')].92,$.results.result[?(@.93.value=='')].93,$.results.result[?(@.7.value=='')].7,$.results.result[?(@.153.value=='')].153,$.results.result[?(@.154.value=='')].154,$.results.result[?(@.282.value=='')].282,$.results.result[?(@.348.value=='')].348,$.results.result[?(@.479.value=='')].479)"/>
+                <source clone="false" xpath="json-eval($.results.result[?(@.3.value=='')])"/>
+                <target action="remove" type="body"/>
+            </enrich>
+            <enrich>
+                <source clone="false" xpath="json-eval($.results.result[?(@.7.value=='')].7,$.results.result[?(@.153.value=='')].153,$.results.result[?(@.154.value=='')].154,$.results.result[?(@.479.value=='')].479)"/>
                 <target action="remove" type="body"/>
             </enrich>
             <enrich>
                 <source clone="false" xpath="json-eval($.results.result)"/>
                 <target type="body"/>
             </enrich>
-            <payloadFactory description="Data mapping" media-type="json">
+            <payloadFactory description="UpdatingQB" media-type="json">
                 <format>{
-                        	"to":"bs32tiwqq",
-                            "data" :$1,
-                            "fieldsToReturn":[
-                            	5,
-                            	2,
-                            	3,
-                            	9
-                            ]
-				            
-				   }</format>
+                        	"skip":0,
+                        	"take":50,
+			                "to": bs32tiwqq,
+			                "data": $1,
+			                "fieldsToReturn": [
+			                    3, 6, 7, 68, 92, 93, 153, 154, 282, 348, 479, 524
+			                ]
+			            }</format>
                 <args>
                     <arg evaluator="json" expression="$"/>
                 </args>
             </payloadFactory>
-            <!--
-            <enrich>
-                <source clone="false" xpath="json-eval($.results.result)"/>
-                <target type="body"/>
-            </enrich> -->
-            <sequence key="QuickbaseAuth_SQ"/>
+            <propertyGroup>
+                <property name="QB-Realm-Hostname" scope="transport" type="STRING" value="https://dfa.quickbase.com"/>
+                <property name="ContentType" scope="axis2" type="STRING" value="application/json"/>
+                <property name="Accept" scope="axis2" type="STRING" value="application/json"/>
+                <property name="Authorization" scope="transport" type="STRING" value="QB-USER-TOKEN b8w8tz_jx9j_0_fihzjpbeqy3macq4yw4gdwcznud"/>
+            </propertyGroup>
+            <call>
+                <endpoint key="Quickbase_EP"/>
+            </call>
+            <!-- <log description="AuditTempExit" level="custom">
+                <property expression="json-eval($)" name="audit.tempExit.updateRecord"/>
+            </log>
+            <propertyGroup>
+                <property name="QB-Realm-Hostname" scope="transport" type="STRING" value="https://dfa.quickbase.com"/>
+                <property name="ContentType" scope="axis2" type="STRING" value="application/json"/>
+                <property name="Accept" scope="axis2" type="STRING" value="application/json"/>
+                <property name="Authorization" scope="transport" type="STRING" value="QB-USER-TOKEN b8w8tz_jx9j_0_fihzjpbeqy3macq4yw4gdwcznud"/>
+            </propertyGroup>
+            <call>
+                <endpoint key="Quickbase_EP"/>
+            </call>
+            <log description="AuditTempExitQB" level="custom">
+                  <property expression="json-eval($)" name="audit.tempExit.updateRecord"/>
+            </log>
+            <filter description="Not Updated" regex="0" source="json-eval($.metadata.updatedRecordIds.length())">
+                <then>
+                    <log description="No Records Updated" level="custom">
+                        <property name="log.info" value="No records updated"/>
+                    </log>
+                    <script description="get error message" language="js"><![CDATA[var payload = mc.getPayloadJSON();
+				var log = mc.getServiceLog();
+				log.info("***getting into script***");
+				log.info("payloadX: "+ JSON.stringify(payload.metadata.lineErrors));
+				var error;
+				if (payload.metadata.lineErrors){
+				error = payload.metadata.lineErrors[1][0];
+				}else{
+				error = "No records were updated";
+				}
+				log.info("errorMsg: "+JSON.stringify(error));
+				mc.setProperty("errorResponse",error)]]></script>
+                    <log level="full">
+                        <property expression="$ctx:errorResponse" name="log.info"/>
+                        <property expression="get-property('errorResponse')" name="error"/>
+                    </log>
+                    <payloadFactory media-type="json">
+                        <format>{
+"resultCode": -1,
+"resultMessage": "$1"
+}</format>
+                        <args>
+                            <arg evaluator="xml" expression="$ctx:errorResponse"/>
+                        </args>
+                    </payloadFactory>
+                    <property name="HTTP_SC" scope="axis2" type="STRING" value="400"/>
+                </then>
+                <else>
+                    <log description="Records Updated" level="custom">
+                        <property name="log.info" value="records updated"/>
+                    </log>
+                    <payloadFactory media-type="json">
+                        <format>{
+"resultCode": 0,
+"resultMessage": "successful",
+"qbRecordId":"$1"
+}</format>
+                        <args>
+                            <arg evaluator="json" expression="$.data[0].7.value"/>
+                        </args>
+                    </payloadFactory>
+                </else>
+            </filter> -->
+            <!--<sequence key="QuickbaseAuth_SQ"/> -->
             <respond/>
         </inSequence>
         <outSequence/>

@@ -14,9 +14,7 @@
   <name>SageToQuickbaseCompositeExporter</name>
   <description>SageToQuickbaseCompositeExporter</description>
   <properties>
-    <com.example.task_._InjectSageToQuickbaseApiTask>capp/EnterpriseServiceBus</com.example.task_._InjectSageToQuickbaseApiTask>
     <com.example.dataservice_._SageDatabase>capp/DataServicesServer</com.example.dataservice_._SageDatabase>
-    <com.example.sequence_._QuickbaseAuth_SQ>capp/EnterpriseServiceBus</com.example.sequence_._QuickbaseAuth_SQ>
     <com.example.metadata_._SageToQuickbase_API_swagger>capp/EnterpriseServiceBus</com.example.metadata_._SageToQuickbase_API_swagger>
     <com.example.api_._SageToQuickbase_API>capp/EnterpriseServiceBus</com.example.api_._SageToQuickbase_API>
     <com.example.endpoint_._GetSageDatabase>capp/EnterpriseServiceBus</com.example.endpoint_._GetSageDatabase>
@@ -26,22 +24,10 @@
   </properties>
   <dependencies>
     <dependency>
-      <groupId>com.example.task</groupId>
-      <artifactId>InjectSageToQuickbaseApiTask</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
       <groupId>com.example.dataservice</groupId>
       <artifactId>SageDatabase</artifactId>
       <version>1.0.0</version>
       <type>dbs</type>
-    </dependency>
-    <dependency>
-      <groupId>com.example.sequence</groupId>
-      <artifactId>QuickbaseAuth_SQ</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
     </dependency>
     <dependency>
       <groupId>com.example.metadata</groupId>

@@ -2,10 +2,65 @@
 <esb:EsbDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:esb="http:///org/wso2/integrationstudio/eclipse/gmf/esb">
   <server type="SEQUENCE">
     <children xsi:type="esb:Sequences" name="QuickbaseAuth_SQ">
+      <commentsList> &lt;log description=&quot;AuditReEntry&quot; level=&quot;custom&quot;>
+        &lt;property expression=&quot;json-eval($)&quot; name=&quot;audit.reEntry&quot;/>
+        &lt;property expression=&quot;json-eval($.metadata.updatedRecordIds.length())&quot; name=&quot;noUpdate&quot;/>
+        &lt;property expression=&quot;json-eval($.metadata.unchangedRecordIds.length())&quot; name=&quot;metadata&quot;/>
+        &lt;property expression=&quot;json-eval($.data.length())&quot; name=&quot;data1&quot;/>
+        &lt;property expression=&quot;json-eval($.data.length())&quot; name=&quot;data2&quot;/>
+    &lt;/log>
+    &lt;filter description=&quot;Not Updated&quot; regex=&quot;0&quot; source=&quot;json-eval($.metadata.updatedRecordIds.length())&quot;>
+        &lt;then>
+            &lt;log description=&quot;No Records Updated&quot; level=&quot;custom&quot;>
+                &lt;property name=&quot;log.info&quot; value=&quot;No records updated&quot;/>
+            &lt;/log>
+            &lt;script description=&quot;get error message&quot; language=&quot;js&quot;>&lt;![CDATA[var payload = mc.getPayloadJSON();
+				var log = mc.getServiceLog();
+				log.info(&quot;***getting into script***&quot;);
+				log.info(&quot;payloadX: &quot;+ JSON.stringify(payload.metadata.lineErrors));
+				var error;
+				if (payload.metadata.lineErrors){
+				error = payload.metadata.lineErrors[1][0];
+				}else{
+				error = &quot;No records were updated&quot;;
+				}
+				log.info(&quot;errorMsg: &quot;+JSON.stringify(error));
+				mc.setProperty(&quot;errorResponse&quot;,error)]]&gt;&lt;/script>
+            &lt;log level=&quot;full&quot;>
+                &lt;property expression=&quot;$ctx:errorResponse&quot; name=&quot;log.info&quot;/>
+                &lt;property expression=&quot;get-property('errorResponse')&quot; name=&quot;error&quot;/>
+            &lt;/log>
+            &lt;payloadFactory media-type=&quot;json&quot;>
+                &lt;format>{
+&quot;resultCode&quot;: -1,
+&quot;resultMessage&quot;: &quot;$1&quot;
+}&lt;/format>
+                &lt;args>
+                    &lt;arg evaluator=&quot;xml&quot; expression=&quot;$ctx:errorResponse&quot;/>
+                &lt;/args>
+            &lt;/payloadFactory>
+            &lt;property name=&quot;HTTP_SC&quot; scope=&quot;axis2&quot; type=&quot;STRING&quot; value=&quot;400&quot;/>
+        &lt;/then>
+        &lt;else>
+            &lt;log description=&quot;Records Updated&quot; level=&quot;custom&quot;>
+                &lt;property name=&quot;log.info&quot; value=&quot;records updated&quot;/>
+            &lt;/log>
+            &lt;payloadFactory media-type=&quot;json&quot;>
+                &lt;format>{
+&quot;resultCode&quot;: 0,
+&quot;resultMessage&quot;: &quot;successful&quot;,
+&quot;qbRecordId&quot;:&quot;$1&quot;
+}&lt;/format>
+                &lt;args>
+                    &lt;arg evaluator=&quot;json&quot; expression=&quot;$.data[0].7.value&quot;/>
+                &lt;/args>
+            &lt;/payloadFactory>
+        &lt;/else>
+    &lt;/filter> </commentsList>
       <outputConnector>
         <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.0/@inputConnector"/>
       </outputConnector>
-      <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.4/@outputConnector/@outgoingLink"/>
+      <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.3/@outputConnector/@outgoingLink"/>
       <mediatorFlow>
         <children xsi:type="esb:PropertyGroupMediator">
           <inputConnector incomingLinks="//@server/@children.0/@outputConnector/@outgoingLink"/>
@@ -54,10 +109,8 @@
           <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.1/@outputConnector/@outgoingLink"/>
           <outputConnector>
             <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.3/@inputConnector"/>
+            <commentMediators commentText=" &lt;log description=&quot;AuditReEntry&quot; level=&quot;custom&quot;>&#xA;        &lt;property expression=&quot;json-eval($)&quot; name=&quot;audit.reEntry&quot;/>&#xA;        &lt;property expression=&quot;json-eval($.metadata.updatedRecordIds.length())&quot; name=&quot;noUpdate&quot;/>&#xA;        &lt;property expression=&quot;json-eval($.metadata.unchangedRecordIds.length())&quot; name=&quot;metadata&quot;/>&#xA;        &lt;property expression=&quot;json-eval($.data.length())&quot; name=&quot;data1&quot;/>&#xA;        &lt;property expression=&quot;json-eval($.data.length())&quot; name=&quot;data2&quot;/>&#xA;    &lt;/log>&#xA;    &lt;filter description=&quot;Not Updated&quot; regex=&quot;0&quot; source=&quot;json-eval($.metadata.updatedRecordIds.length())&quot;>&#xA;        &lt;then>&#xA;            &lt;log description=&quot;No Records Updated&quot; level=&quot;custom&quot;>&#xA;                &lt;property name=&quot;log.info&quot; value=&quot;No records updated&quot;/>&#xA;            &lt;/log>&#xA;            &lt;script description=&quot;get error message&quot; language=&quot;js&quot;>&lt;![CDATA[var payload = mc.getPayloadJSON();&#xA;&#x9;&#x9;&#x9;&#x9;var log = mc.getServiceLog();&#xA;&#x9;&#x9;&#x9;&#x9;log.info(&quot;***getting into script***&quot;);&#xA;&#x9;&#x9;&#x9;&#x9;log.info(&quot;payloadX: &quot;+ JSON.stringify(payload.metadata.lineErrors));&#xA;&#x9;&#x9;&#x9;&#x9;var error;&#xA;&#x9;&#x9;&#x9;&#x9;if (payload.metadata.lineErrors){&#xA;&#x9;&#x9;&#x9;&#x9;error = payload.metadata.lineErrors[1][0];&#xA;&#x9;&#x9;&#x9;&#x9;}else{&#xA;&#x9;&#x9;&#x9;&#x9;error = &quot;No records were updated&quot;;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;log.info(&quot;errorMsg: &quot;+JSON.stringify(error));&#xA;&#x9;&#x9;&#x9;&#x9;mc.setProperty(&quot;errorResponse&quot;,error)]]>&lt;/script>&#xA;            &lt;log level=&quot;full&quot;>&#xA;                &lt;property expression=&quot;$ctx:errorResponse&quot; name=&quot;log.info&quot;/>&#xA;                &lt;property expression=&quot;get-property('errorResponse')&quot; name=&quot;error&quot;/>&#xA;            &lt;/log>&#xA;            &lt;payloadFactory media-type=&quot;json&quot;>&#xA;                &lt;format>{&#xA;&quot;resultCode&quot;: -1,&#xA;&quot;resultMessage&quot;: &quot;$1&quot;&#xA;}&lt;/format>&#xA;                &lt;args>&#xA;                    &lt;arg evaluator=&quot;xml&quot; expression=&quot;$ctx:errorResponse&quot;/>&#xA;                &lt;/args>&#xA;            &lt;/payloadFactory>&#xA;            &lt;property name=&quot;HTTP_SC&quot; scope=&quot;axis2&quot; type=&quot;STRING&quot; value=&quot;400&quot;/>&#xA;        &lt;/then>&#xA;        &lt;else>&#xA;            &lt;log description=&quot;Records Updated&quot; level=&quot;custom&quot;>&#xA;                &lt;property name=&quot;log.info&quot; value=&quot;records updated&quot;/>&#xA;            &lt;/log>&#xA;            &lt;payloadFactory media-type=&quot;json&quot;>&#xA;                &lt;format>{&#xA;&quot;resultCode&quot;: 0,&#xA;&quot;resultMessage&quot;: &quot;successful&quot;,&#xA;&quot;qbRecordId&quot;:&quot;$1&quot;&#xA;}&lt;/format>&#xA;                &lt;args>&#xA;                    &lt;arg evaluator=&quot;json&quot; expression=&quot;$.data[0].7.value&quot;/>&#xA;                &lt;/args>&#xA;            &lt;/payloadFactory>&#xA;        &lt;/else>&#xA;    &lt;/filter> "/>
           </outputConnector>
-          <properties propertyName="audit.reEntry" propertyValueType="EXPRESSION" propertyValue="">
-            <propertyExpression propertyValue="json-eval($)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
-          </properties>
           <properties propertyName="noUpdate" propertyValueType="EXPRESSION" propertyValue="">
             <propertyExpression propertyValue="json-eval($.metadata.updatedRecordIds.length())" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
           </properties>
@@ -71,93 +124,8 @@
             <propertyExpression propertyValue="json-eval($.data.length())" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
           </properties>
         </children>
-        <children xsi:type="esb:FilterMediator" description="Not Updated" regex="0">
+        <children xsi:type="esb:RespondMediator">
           <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.2/@outputConnector/@outgoingLink"/>
-          <outputConnector>
-            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.4/@inputConnector"/>
-          </outputConnector>
-          <passOutputConnector>
-            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.0/@inputConnector"/>
-          </passOutputConnector>
-          <failOutputConnector>
-            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@failContainer/@mediatorFlow/@children.0/@inputConnector"/>
-          </failOutputConnector>
-          <xpath prettyName="Filter Source XPath" propertyName="filterSourceXpath" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
-          <source propertyValue="json-eval($.metadata.updatedRecordIds.length())" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
-          <filterContainer>
-            <passContainer>
-              <mediatorFlow>
-                <children xsi:type="esb:LogMediator" description="No Records Updated" logLevel="CUSTOM" logSeparator=", ">
-                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.3/@passOutputConnector/@outgoingLink"/>
-                  <outputConnector>
-                    <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.1/@inputConnector"/>
-                  </outputConnector>
-                  <properties propertyName="log.info" propertyValue="No records updated">
-                    <propertyExpression prettyName="property expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
-                  </properties>
-                </children>
-                <children xsi:type="esb:ScriptMediator" description="get error message" scriptType="INLINE" scriptBody="var payload = mc.getPayloadJSON();&#xA;var log = mc.getServiceLog();&#xA;log.info(&quot;***getting into script***&quot;);&#xA;log.info(&quot;payloadX: &quot;+ JSON.stringify(payload.metadata.lineErrors));&#xA;var error;&#xA;if (payload.metadata.lineErrors){&#xA;error = payload.metadata.lineErrors[1][0];&#xA;}else{&#xA;error = &quot;No records were updated&quot;;&#xA;}&#xA;log.info(&quot;errorMsg: &quot;+JSON.stringify(error));&#xA;mc.setProperty(&quot;errorResponse&quot;,error)">
-                  <scriptDynamicKey prettyName="" propertyName="dynamic key" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
-                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
-                  <outputConnector>
-                    <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.2/@inputConnector"/>
-                  </outputConnector>
-                  <scriptStaticKey prettyName="Script Key" keyName="key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
-                </children>
-                <children xsi:type="esb:LogMediator" logLevel="FULL" logSeparator=", ">
-                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.1/@outputConnector/@outgoingLink"/>
-                  <outputConnector>
-                    <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.3/@inputConnector"/>
-                  </outputConnector>
-                  <properties propertyName="log.info" propertyValueType="EXPRESSION" propertyValue="">
-                    <propertyExpression propertyValue="$ctx:errorResponse" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
-                  </properties>
-                  <properties propertyName="error" propertyValueType="EXPRESSION" propertyValue="">
-                    <propertyExpression propertyValue="get-property('errorResponse')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
-                  </properties>
-                </children>
-                <children xsi:type="esb:PayloadFactoryMediator" payload="{&#xA;&quot;resultCode&quot;: -1,&#xA;&quot;resultMessage&quot;: &quot;$1&quot;&#xA;}" mediaType="json">
-                  <payloadKey prettyName="Sequence Key" keyName="Sequence Key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
-                  <args argumentType="Expression">
-                    <argumentExpression propertyValue="$ctx:errorResponse" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
-                  </args>
-                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.2/@outputConnector/@outgoingLink"/>
-                  <outputConnector>
-                    <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.4/@inputConnector"/>
-                  </outputConnector>
-                </children>
-                <children xsi:type="esb:PropertyMediator" propertyName="HTTP_SC" propertyScope="axis2" value="400">
-                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@passContainer/@mediatorFlow/@children.3/@outputConnector/@outgoingLink"/>
-                  <outputConnector/>
-                  <valueExpression prettyName="Property Expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078" supportJsonPaths="true"/>
-                </children>
-              </mediatorFlow>
-            </passContainer>
-            <failContainer>
-              <mediatorFlow>
-                <children xsi:type="esb:LogMediator" description="Records Updated" logLevel="CUSTOM" logSeparator=", ">
-                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.3/@failOutputConnector/@outgoingLink"/>
-                  <outputConnector>
-                    <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@failContainer/@mediatorFlow/@children.1/@inputConnector"/>
-                  </outputConnector>
-                  <properties propertyName="log.info" propertyValue="records updated">
-                    <propertyExpression prettyName="property expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
-                  </properties>
-                </children>
-                <children xsi:type="esb:PayloadFactoryMediator" payload="{&#xA;&quot;resultCode&quot;: 0,&#xA;&quot;resultMessage&quot;: &quot;successful&quot;,&#xA;&quot;qbRecordId&quot;:&quot;$1&quot;&#xA;}" mediaType="json">
-                  <payloadKey prettyName="Sequence Key" keyName="Sequence Key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
-                  <args argumentType="Expression" evaluator="json">
-                    <argumentExpression propertyValue="json-eval($.data[1].3.value)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
-                  </args>
-                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.3/@filterContainer/@failContainer/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
-                  <outputConnector/>
-                </children>
-              </mediatorFlow>
-            </failContainer>
-          </filterContainer>
-        </children>
-        <children xsi:type="esb:LoopBackMediator">
-          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.3/@outputConnector/@outgoingLink"/>
           <outputConnector>
             <outgoingLink target="//@server/@children.0/@inputConnector"/>
           </outputConnector>

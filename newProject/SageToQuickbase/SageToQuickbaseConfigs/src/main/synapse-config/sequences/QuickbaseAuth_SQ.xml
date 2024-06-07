@@ -9,6 +9,12 @@
         <endpoint key="Quickbase_EP"/>
     </call>
     <log description="AuditReEntry" level="custom">
+        <property expression="json-eval($.metadata.updatedRecordIds.length())" name="noUpdate"/>
+        <property expression="json-eval($.metadata.unchangedRecordIds.length())" name="metadata"/>
+        <property expression="json-eval($.data.length())" name="data1"/>
+        <property expression="json-eval($.data.length())" name="data2"/>
+    </log>
+    <!-- <log description="AuditReEntry" level="custom">
         <property expression="json-eval($)" name="audit.reEntry"/>
         <property expression="json-eval($.metadata.updatedRecordIds.length())" name="noUpdate"/>
         <property expression="json-eval($.metadata.unchangedRecordIds.length())" name="metadata"/>
@@ -21,17 +27,17 @@
                 <property name="log.info" value="No records updated"/>
             </log>
             <script description="get error message" language="js"><![CDATA[var payload = mc.getPayloadJSON();
-var log = mc.getServiceLog();
-log.info("***getting into script***");
-log.info("payloadX: "+ JSON.stringify(payload.metadata.lineErrors));
-var error;
-if (payload.metadata.lineErrors){
-error = payload.metadata.lineErrors[1][0];
-}else{
-error = "No records were updated";
-}
-log.info("errorMsg: "+JSON.stringify(error));
-mc.setProperty("errorResponse",error)]]></script>
+				var log = mc.getServiceLog();
+				log.info("***getting into script***");
+				log.info("payloadX: "+ JSON.stringify(payload.metadata.lineErrors));
+				var error;
+				if (payload.metadata.lineErrors){
+				error = payload.metadata.lineErrors[1][0];
+				}else{
+				error = "No records were updated";
+				}
+				log.info("errorMsg: "+JSON.stringify(error));
+				mc.setProperty("errorResponse",error)]]></script>
             <log level="full">
                 <property expression="$ctx:errorResponse" name="log.info"/>
                 <property expression="get-property('errorResponse')" name="error"/>
@@ -58,10 +64,10 @@ mc.setProperty("errorResponse",error)]]></script>
 "qbRecordId":"$1"
 }</format>
                 <args>
-                    <arg evaluator="json" expression="$.data[1].3.value"/>
+                    <arg evaluator="json" expression="$.data[0].7.value"/>
                 </args>
             </payloadFactory>
         </else>
-    </filter>
-    <loopback/>
+    </filter> -->
+    <respond/>
 </sequence>
