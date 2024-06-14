@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/update" name="UpdateQBCRMsites" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" url-mapping="/AccessBuild">
+        <inSequence>
+            <call>
+                <endpoint key="getData"/>
+            </call>
+            <log description="AUDIT_ENTRY" level="custom" separator=",">
+                <property expression="json-eval($.results.result[1])" name="AUDIT_ENTRY"/>
+            </log>
+            <enrich>
+                <source clone="false" xpath="json-eval($.results.result[?(@.access_infrastructureid==null)].access_infrastructureid,$.results.result[?(@.Build_Company==null)].Build_Company,$.results.result[?(@.access_DFABuildingNr==null)].access_DFABuildingNr,$.results.result[?(@.Ownership==null)].Ownership)"/>
+                <target action="remove" type="body"/>
+            </enrich>
+            <!-- ////////////////////////Data Mapping/////////////////////////////////// -->
+            <foreach expression="json-eval($.results.result)" id="foreach_1">
+                <sequence>
+                    <payloadFactory description="Data mapping" media-type="json">
+                        <format>{
+                            "3" :{"value":"$1"},
+				            "6" :{"value":"$2"},
+				            "7" :{"value":"$3"},
+				            "68":{"value":"$4"},
+				            "92":{"value":"$5"},
+				            "93":{"value":"$6"},
+				            "153":{"value":"$7"},
+				            "154":{"value":"$8"},
+				            "282":{"value":"$9"},
+				            "348":{"value":"$10"},
+				            "479":{"value":"$11"},
+				            "524": {"value":"$12"}
+				   }</format>
+                        <args>
+                            <arg evaluator="json" expression="$.access_QuickBaseRecordID"/>
+                            <arg evaluator="json" expression="$.Access_ID"/>
+                            <arg evaluator="json" expression="$.access_DFABuildingNr"/>
+                            <arg evaluator="json" expression="$.access_Site_Name"/>
+                            <arg evaluator="json" expression="$.access_Site_Latitude"/>
+                            <arg evaluator="json" expression="$.access_Site_Longitude"/>
+                            <arg evaluator="json" expression="$.Ownership"/>
+                            <arg evaluator="json" expression="$.Build_Company"/>
+                            <arg evaluator="json" expression="$.access_Site_Address"/>
+                            <arg evaluator="json" expression="$.access_dfaregion"/>
+                            <arg evaluator="json" expression="$.access_infrastructureid"/>
+                            <arg evaluator="json" expression="$.Comp_IdCust"/>
+                        </args>
+                    </payloadFactory>
+                </sequence>
+            </foreach>
+            <!-- //////////////////////////Cleaning Payload////////////////////////////////////// -->
+            <enrich>
+                <source clone="false" xpath="json-eval($.results.result[?(@.7.value=='')].7,$.results.result[?(@.153.value=='')].153,$.results.result[?(@.154.value=='')].154,$.results.result[?(@.479.value=='')].479)"/>
+                <target action="remove" type="body"/>
+            </enrich>
+            <enrich>
+                <source clone="false" xpath="json-eval($.results.result)"/>
+                <target type="body"/>
+            </enrich>
+            <!-- ///////////////////////Updating Quickbase////////////////////////////////// -->
+            <sequence key="UpdateQB_SQ"/>
+            <property expression="json-eval($.metadata.totalNumberOfRecordsProcessed.length())" name="noRecord" scope="default" type="STRING"/>
+            <property expression="json-eval($.metadata.updatedRecordIds.length())" name="noUpdate" scope="default" type="STRING"/>
+            <property expression="json-eval($.metadata.unchangedRecordIds.length())" name="noUnchangedRecords" scope="default" type="STRING"/>
+            <!-- ////////////////////////Sending Email ////////////////////////////////////// -->
+            <sequence key="EmailSQ"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

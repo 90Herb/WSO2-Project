@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="Email_EP" xmlns="http://ws.apache.org/ns/synapse">
+    <http method="post" uri-template="http://dfaapicr01.dfa.local:8080/APIServer/rest/default/commonapi/v1/sendMail">
+        <suspendOnFailure>
+            <initialDuration>-1</initialDuration>
+            <progressionFactor>1.0</progressionFactor>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+        </markForSuspension>
+    </http>
+</endpoint>

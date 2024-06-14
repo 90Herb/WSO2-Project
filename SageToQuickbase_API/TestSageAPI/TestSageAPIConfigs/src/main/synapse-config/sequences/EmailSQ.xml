@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="EmailSQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property description="SET MAILTO" name="email" scope="default" type="STRING" value="Herbet.Mafabatho@dfafrica.co.za"/>
+    <property expression="fn:substring-before($ctx:email,'.')" name="user" scope="default" type="STRING"/>
+    <property expression="concat(upper-case(substring($ctx:user, 1, 1)),substring($ctx:user, 2))" name="User" scope="default" type="STRING"/>
+    <payloadFactory description="SET EMAIL CONTENT" media-type="xml">
+        <format>
+            <mailBody><![CDATA[
+                         <p>Hi $4,<br /><br/>
+        Updating Quickbase CRM sites<br />
+      <table> 
+         <tr>
+           <td>Number of Records Processed<td>&nbsp;:&nbsp;</td><td>$1</td>
+         </tr>
+         <tr>
+           <td>Number of Records Updated<td>&nbsp;:&nbsp;</td><td>$2</td>
+         </tr>
+         <tr>
+           <td>Number of Records failed<td>&nbsp;:&nbsp;</td><td>$6</td>
+         </tr>
+        </table>Kind Regards
+]]></mailBody>
+        </format>
+        <args>
+            <arg evaluator="json" expression="$ctx:noRecord"/>
+            <arg evaluator="json" expression="$ctx:noUpdate"/>
+            <arg evaluator="json" expression="$.noUnchangedRecords"/>
+            <arg evaluator="json" expression="$ctx:User"/>
+        </args>
+    </payloadFactory>
+    <log description="AUDIT_TEMP_EXIT" level="custom" separator=",">
+        <property expression="json-eval($)" name="PAYLOAD"/>
+    </log>
+    <payloadFactory description="SET EMAIL PAYLOAD" media-type="json">
+        <format>{&#xd;
+			    "mailTo": "$1",&#xd;
+			    "mailSubject": "Updating Quickbase CRMsites sync completed",
+			    "mailBody": "$2",&#xd;
+			    "contentType":"text/plain"&#xd;
+			}</format>
+        <args>
+            <arg evaluator="json" expression="$ctx:email"/>
+            <arg evaluator="json" expression="$.mailBody"/>
+        </args>
+    </payloadFactory>
+    <propertyGroup>
+        <property name="Authorization" scope="transport" type="STRING" value="CALiveAPICreator prdlDGcoAKrrkSyed9IDRK2:1"/>
+    </propertyGroup>
+    <call>
+        <endpoint key="Email_EP"/>
+    </call>
+    <respond/>
+</sequence>
