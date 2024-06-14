@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/SDM" name="NOCCASDM_API" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/NOCCASDM">
+        <inSequence>
+            <property description="SET MAILTO" expression="json-eval($.affectedUser)" name="email" scope="default" type="STRING"/>
+            <property description="SET SDMRef" expression="json-eval($.sdm_reference)" name="Sdm_reference" scope="default" type="STRING"/>
+            <property description="SET RECORDID" expression="json-eval($.rid)" name="recordID" scope="default" type="STRING"/>
+            <log description="LOG EMAIL" level="custom">
+                <property expression="$ctx:email" name="LOG EMAIL"/>
+            </log>
+            <log description="LOG SDMRef" level="custom">
+                <property expression="$ctx:Sdm_reference" name="LOG SDMRef"/>
+            </log>
+            <log description="AuditTempExit" level="custom">
+                <property name="audit.tempExit" value="Getting the Change Request Table"/>
+            </log>
+            <property expression="get-property(&quot;SYSTEM_DATE&quot;, &quot;yyyy-MM-dd' 'HH:mm:ss.SSS&quot;)" name="qb_syncdatetime" scope="default" type="STRING"/>
+            <propertyGroup>
+                <property name="QB-Realm-Hostname" scope="transport" type="STRING" value="https://dfa.quickbase.com"/>
+                <property name="Authorization" scope="transport" type="STRING" value="QB-USER-TOKEN b8w8tz_jx9j_0_fihzjpbeqy3macq4yw4gdwcznud"/>
+            </propertyGroup>
+            <payloadFactory media-type="json">
+                <format>{
+				    "from": "bqj2dg8mw",
+				    "select": [
+				        3,8,9
+				    ],
+				    "where": "{8.EX.$1}"
+				}</format>
+                <args>
+                    <arg evaluator="json" expression="$.rid"/>
+                </args>
+            </payloadFactory>
+            <log>
+                <property expression="json-eval($)" name="JSON-Payload"/>
+            </log>
+            <call>
+                <endpoint key="GETQuickbaseED"/>
+            </call>
+            <log description="AUDIT_REENTRY" level="custom" separator=",">
+                <property expression="json-eval($)" name="QB_PAYLOAD"/>
+            </log>
+            <property expression="get-property(&quot;SYSTEM_DATE&quot;, &quot;yyyy-MM-dd' 'HH:mm:ss.SSS&quot;)" name="qb_syncdatetime" scope="default" type="STRING"/>
+            <!--=============================Data Mapping=========================================-->
+            <sequence key="DataMapping_SQ"/>
+            <!-- =====================Data Insert into Staging_CA table=========================-->
+            <sequence key="DataInsertStagingCA_SQ"/>
+            <log description="AUDIT_REENTRY" level="custom" separator=",">
+                <property expression="json-eval($)" name="AUDIT_REENTRY"/>
+            </log>
+            <!-- ==============Should be commented Out!============================================ -->
+            <!--  <propertyGroup>
+                 <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+                <property name="Authorization" scope="transport" type="STRING" value="CALiveAPICreator prdlDGcoAKrrkSyed9IDRK2:1"/>   
+            </propertyGroup>-->
+            <!--<payloadFactory description="SET EMAIL PAYLOAD" media-type="json">
+                <format>{&#xd;
+			    "mailTo": "$1",&#xd;
+			    "mailSubject": "Network Change Control #NCC$2 sync completed",
+			    "mailBody": "$3",&#xd;
+			    "contentType":"text/plain"&#xd;
+			}</format>
+                <args>
+                    <arg evaluator="json" expression="$ctx:email"/>
+                    <arg evaluator="json" expression="$ctx:recordID"/>
+                    <arg evaluator="json" expression="$.mailBody"/>
+                </args>
+            </payloadFactory>
+             -->
+            <!--===================================Email Configuration================================-->
+            <property expression="get-property(&quot;SYSTEM_DATE&quot;, &quot;yyyy-MM-dd' 'HH:mm:ss.SSS&quot;)" name="SyncedDateTime" scope="default" type="STRING"/>
+            <property expression="fn:substring-before($ctx:email,'.')" name="user" scope="default" type="STRING"/>
+            <property expression="concat(upper-case(substring($ctx:user, 1, 1)),substring($ctx:user, 2))" name="User" scope="default" type="STRING"/>
+            <log description="LOG EMAIL" level="custom">
+                <property expression="$ctx:User" name="User Name"/>
+            </log>
+            <payloadFactory description="SET EMAIL CONTENT" media-type="xml">
+                <format>
+                    <mailBody><![CDATA[
+                         <p>Hi $5,<br /><br/>
+        Please note that the affected circuits related to the Change Control #NCC$1 have synced successfully.<br />
+      <table> 
+         <tr>
+           <td>Change ID<td>&nbsp;:&nbsp;</td><td>NCC$1</td>
+         </tr>
+         <tr>
+           <td>SDM Reference<td>&nbsp;:&nbsp;</td><td>$2</td>
+         </tr>
+         <tr>
+           <td>Affected Circuits<td>&nbsp;:&nbsp;</td><td>$6</td>
+         </tr>
+         <tr>
+           <td>Sync Period<td>&nbsp;:&nbsp;</td><td><b>[$3]</b> to <b>[$4]</b></td></td>
+         </tr>
+        </table>Kind Regards
+]]></mailBody>
+                </format>
+                <args>
+                    <arg evaluator="json" expression="$ctx:recordID"/>
+                    <arg evaluator="json" expression="$ctx:Sdm_reference"/>
+                    <arg evaluator="json" expression="$ctx:qb_syncdatetime"/>
+                    <arg evaluator="json" expression="$ctx:SyncedDateTime"/>
+                    <arg evaluator="json" expression="$ctx:User"/>
+                    <arg evaluator="json" expression="$ctx:AffectedCircuits"/>
+                </args>
+            </payloadFactory>
+            <log description="AUDIT_TEMP_EXIT" level="custom" separator=",">
+                <property expression="json-eval($)" name="PAYLOAD"/>
+            </log>
+            <payloadFactory description="SET EMAIL PAYLOAD" media-type="json">
+                <format>{&#xd;
+			    "mailTo": "$1",&#xd;
+			    "mailSubject": "Network Change Control #NCC$2 sync completed",
+			    "mailBody": "$3",&#xd;
+			    "contentType":"text/plain"&#xd;
+			}</format>
+                <args>
+                    <arg evaluator="json" expression="$ctx:email"/>
+                    <arg evaluator="json" expression="$ctx:recordID"/>
+                    <arg evaluator="json" expression="$.mailBody"/>
+                </args>
+            </payloadFactory>
+            <property name="ContentType" scope="axis2" type="STRING" value="application/json"/>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <propertyGroup>
+                <property name="Authorization" scope="transport" type="STRING" value="CALiveAPICreator prdlDGcoAKrrkSyed9IDRK2:1"/>
+            </propertyGroup>
+            <call>
+                <endpoint key="SendEmail_ED"/>
+            </call>
+            <!-- =====================Data Insert into Staging_CA table=========================-->
+            <!--<sequence key="DataInsertStagingCA_SQ"/> -->
+            <!--=========================Email Send SQ=================================================================-->
+            <!-- <sequence key="SendEmail_SQ"/> -->
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

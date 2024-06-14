@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="SendEmail_SQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <propertyGroup>
+        <property name="Authorization" scope="transport" type="STRING" value="CALiveAPICreator prdlDGcoAKrrkSyed9IDRK2:1"/>
+    </propertyGroup>
+    <!-- <payloadFactory description="SET EMAIL PAYLOAD" media-type="json">
+        <format>{&#xd;
+			    "mailTo": $1,&#xd;
+			    "mailSubject": "Network Change Control sync completed",
+			    "mailBody": $2,&#xd;
+			    "contentType":"text/plain"&#xd;
+			}</format>
+        <args>
+            <arg evaluator="json" expression="$ctx:email"/>
+            <arg evaluator="json" expression="$ctx:Sdm_reference"/>
+        </args>
+    </payloadFactory> -->
+    <call>
+        <endpoint key="SendEmail_ED"/>
+    </call>
+    <respond/>
+</sequence>

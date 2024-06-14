@@ -1,0 +1,23 @@
+openapi: 3.0.1
+info:
+  title: EmailSend_API.xml
+  description: API Definition of EmailSend_API
+  version: 1.0.0
+servers:
+- url: http://localhost:8290/Email
+paths:
+  /:
+    post:
+      requestBody:
+        description: Sample Payload
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payload:
+                  type: object
+        required: false
+      responses:
+        default:
+          description: Default response

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="NOCCASDM_API" groupId="com.example.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/NOCCASDM_API.xml</file>
+    </artifact>
+    <artifact name="NOCCASDM_API_swagger" groupId="com.example.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/NOCCASDM_API_swagger.yaml</file>
+    </artifact>
+    <artifact name="NOCCASDM_API_metadata" groupId="com.example.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/NOCCASDM_API_metadata.yaml</file>
+    </artifact>
+    <artifact name="GETQuickbaseED" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/GETQuickbaseED.xml</file>
+    </artifact>
+    <artifact name="SendEmail_ED" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/SendEmail_ED.xml</file>
+    </artifact>
+    <artifact name="SendEmail_SQ" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/SendEmail_SQ.xml</file>
+    </artifact>
+    <artifact name="DataMapping_SQ" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/DataMapping_SQ.xml</file>
+    </artifact>
+    <artifact name="DataInsertStagingCA_SQ" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/DataInsertStagingCA_SQ.xml</file>
+    </artifact>
+</artifacts>
