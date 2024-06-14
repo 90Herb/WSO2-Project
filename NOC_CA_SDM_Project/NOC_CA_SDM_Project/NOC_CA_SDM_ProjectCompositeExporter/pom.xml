@@ -23,6 +23,7 @@
     <com.example.sequence_._DataMapping_SQ>capp/EnterpriseServiceBus</com.example.sequence_._DataMapping_SQ>
     <com.example.sequence_._DataInsertStagingCA_SQ>capp/EnterpriseServiceBus</com.example.sequence_._DataInsertStagingCA_SQ>
     <com.example.metadata_._NOCCASDM_API_swagger>capp/EnterpriseServiceBus</com.example.metadata_._NOCCASDM_API_swagger>
+    <com.example.dataservice_._GetDataFromSage>capp/DataServicesServer</com.example.dataservice_._GetDataFromSage>
     <com.example.local-entry_._smtconnection>capp/EnterpriseServiceBus</com.example.local-entry_._smtconnection>
     <com.example.metadata_._NOCCASDM_API_metadata>capp/EnterpriseServiceBus</com.example.metadata_._NOCCASDM_API_metadata>
     <com.example.endpoint_._GETQuickbaseED>capp/EnterpriseServiceBus</com.example.endpoint_._GETQuickbaseED>

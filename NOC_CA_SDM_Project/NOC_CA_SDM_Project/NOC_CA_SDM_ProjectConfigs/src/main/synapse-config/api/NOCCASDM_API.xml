@@ -13,7 +13,6 @@
             </log>
             <log description="AuditTempExit" level="custom">
                 <property name="audit.tempExit" value="Getting the Change Request Table"/>
-                <property expression="get-property(&quot;SYSTEM_DATE&quot;, &quot;yyyy-mm-dd' 'hh:mm:ss.SSS&quot;)" name="qb_syncdatetime"/>
             </log>
             <property expression="get-property(&quot;SYSTEM_DATE&quot;, &quot;yyyy-MM-dd' 'HH:mm:ss.SSS&quot;)" name="qb_syncdatetime" scope="default" type="STRING"/>
             <propertyGroup>
@@ -41,7 +40,7 @@
             <log description="AUDIT_REENTRY" level="custom" separator=",">
                 <property expression="json-eval($)" name="QB_PAYLOAD"/>
             </log>
-            <property expression="json-eval($.metadata.numRecords)" name="AffectedCircuits" scope="default" type="STRING"/>
+            <property expression="get-property(&quot;SYSTEM_DATE&quot;, &quot;yyyy-MM-dd' 'HH:mm:ss.SSS&quot;)" name="qb_syncdatetime" scope="default" type="STRING"/>
             <!--=============================Data Mapping=========================================-->
             <sequence key="DataMapping_SQ"/>
             <!-- =====================Data Insert into Staging_CA table=========================-->
@@ -71,6 +70,10 @@
             <!--===================================Email Configuration================================-->
             <property expression="get-property(&quot;SYSTEM_DATE&quot;, &quot;yyyy-MM-dd' 'HH:mm:ss.SSS&quot;)" name="SyncedDateTime" scope="default" type="STRING"/>
             <property expression="fn:substring-before($ctx:email,'.')" name="user" scope="default" type="STRING"/>
+            <property expression="concat(upper-case(substring($ctx:user, 1, 1)),substring($ctx:user, 2))" name="User" scope="default" type="STRING"/>
+            <log description="LOG EMAIL" level="custom">
+                <property expression="$ctx:User" name="User Name"/>
+            </log>
             <payloadFactory description="SET EMAIL CONTENT" media-type="xml">
                 <format>
                     <mailBody><![CDATA[
@@ -97,7 +100,7 @@
                     <arg evaluator="json" expression="$ctx:Sdm_reference"/>
                     <arg evaluator="json" expression="$ctx:qb_syncdatetime"/>
                     <arg evaluator="json" expression="$ctx:SyncedDateTime"/>
-                    <arg evaluator="json" expression="$ctx:user"/>
+                    <arg evaluator="json" expression="$ctx:User"/>
                     <arg evaluator="json" expression="$ctx:AffectedCircuits"/>
                 </args>
             </payloadFactory>
@@ -117,6 +120,11 @@
                     <arg evaluator="json" expression="$.mailBody"/>
                 </args>
             </payloadFactory>
+            <property name="ContentType" scope="axis2" type="STRING" value="application/json"/>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <propertyGroup>
+                <property name="Authorization" scope="transport" type="STRING" value="CALiveAPICreator prdlDGcoAKrrkSyed9IDRK2:1"/>
+            </propertyGroup>
             <call>
                 <endpoint key="SendEmail_ED"/>
             </call>

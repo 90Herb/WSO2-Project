@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoint name="SendEmail_ED" xmlns="http://ws.apache.org/ns/synapse">
-    <http method="post" uri-template="http://localhost:8290/Email/send">
+    <http method="post" uri-template="http://localhost:8290/Email">
         <suspendOnFailure>
             <initialDuration>-1</initialDuration>
             <progressionFactor>1.0</progressionFactor>
