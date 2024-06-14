@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="DataMapping_SQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+    <script description="set data length" language="js"><![CDATA[var qbResponse = mc.getPayloadJSON();
+	               		var preBody = [];
+						var log = mc.getServiceLog();	
+						var qb_syncdatetime = mc.getProperty('qb_syncdatetime');
+						var SdmReference = mc.getProperty('Sdm_reference');
+						var affectedUser = mc.getProperty('affectedUser');
+		
+						
+						var lut = []; for (var i=0; i<256; i++) { lut[i] = (i<16?'0':'')+(i).toString(16); };
+						
+						log.info('PAGE_SIZE ' + JSON.stringify(qbResponse.data.length));
+						
+						function guid(){
+					    var d0 = Math.random()*0xffffffff|0;
+					    var d1 = Math.random()*0xffffffff|0;
+					    var d2 = Math.random()*0xffffffff|0;
+					    var d3 = Math.random()*0xffffffff|0;
+					    return lut[d0&0xff]+lut[d0>>8&0xff]+lut[d0>>16&0xff]+lut[d0>>24&0xff]+'-'+
+					    lut[d1&0xff]+lut[d1>>8&0xff]+'-'+lut[d1>>16&0x0f|0x40]+lut[d1>>24&0xff]+'-'+
+					    lut[d2&0x3f|0x80]+lut[d2>>8&0xff]+'-'+lut[d2>>16&0xff]+lut[d2>>24&0xff]+
+					    lut[d3&0xff]+lut[d3>>8&0xff]+lut[d3>>16&0xff]+lut[d3>>24&0xff];
+						}
+						
+						for(var i = 0; i < qbResponse.data.length; i++){
+							preBody.push(
+								{							
+									"chg_parent":SdmReference,
+									"qb_childid": (qbResponse.data[i][3]["value"] === "" || qbResponse.data[i][3]["value"] === null ? null : qbResponse.data[i][3]["value"]),
+									"qb_parentid": (qbResponse.data[i][8]["value"] === "" || qbResponse.data[i][8]["value"] === null ? null : qbResponse.data[i][8]["value"]),
+									"resource_name": (qbResponse.data[i][9]["value"] === "" || qbResponse.data[i][9]["value"] === null ? null : qbResponse.data[i][9]["value"]),
+									"qb_syncdatetime":qb_syncdatetime,
+									"rowguid":guid()
+								}
+							);
+						};				
+					mc.setPayloadJSON(preBody);]]></script>
+    <log>
+        <property expression="json-eval($)" name="JSON-Payload"/>
+    </log>
+    <property expression="json-eval($[0].chg_parent)" name="chg_parent" scope="default" type="STRING"/>
+</sequence>

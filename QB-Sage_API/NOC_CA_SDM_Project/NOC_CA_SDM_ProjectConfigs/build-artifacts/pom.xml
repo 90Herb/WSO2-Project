@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.example</groupId>
+    <artifactId>NOC_CA_SDM_ProjectConfigs</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <groupId>com.example</groupId>
+  <artifactId>NOC_CA_SDM_ProjectConfigs_module</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>NOC_CA_SDM_ProjectConfigs_module</name>
+  <description>NOC_CA_SDM_ProjectConfigs_module</description>
+  <modules>
+    <module>api/NOCCASDM_API</module>
+    <module>metadata/NOCCASDM_API_swagger</module>
+    <module>metadata/NOCCASDM_API_metadata</module>
+    <module>endpoints/SDM_ED</module>
+    <module>endpoints/SendEmail_ED</module>
+    <module>sequences/SendEmail_SQ</module>
+    <module>sequences/DataMapping_SQ</module>
+    <module>sequences/DataInsertStagingCA_SQ</module>
+  </modules>
+</project>

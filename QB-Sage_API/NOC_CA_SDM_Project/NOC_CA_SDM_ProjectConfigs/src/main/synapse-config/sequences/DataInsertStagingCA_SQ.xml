@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="DataInsertStagingCA_SQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <enrich description="saveOriginalPayload">
+        <source clone="true" type="body"/>
+        <target property="originalPayload" type="property"/>
+    </enrich>
+    <dbreport>
+        <connection>
+            <pool>
+                <driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver>
+                <url>jdbc:sqlserver://DFASQL-lab01:1433;databaseName=Staging_CA;</url>
+                <user>Herbert.Mafabatho</user>
+                <password>b4z4r39P58z9</password>
+            </pool>
+        </connection>
+        <statement>
+            <sql><![CDATA[delete from dbo.z_COGenerator where qb_parentid=?]]></sql>
+            <parameter expression="$ctx:recordID" type="INTEGER"/>
+        </statement>
+    </dbreport>
+    <log level="custom">
+        <property name="text" value="** Reporting to the Database EIdb1**"/>
+    </log>
+    <foreach expression="//jsonArray/jsonElement" id="foreach_1">
+        <sequence>
+            <dbreport>
+                <connection>
+                    <pool>
+                        <driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver>
+                        <url>jdbc:sqlserver://DFASQL-lab01:1433;databaseName=Staging_CA;</url>
+                        <user>Herbert.Mafabatho</user>
+                        <password>b4z4r39P58z9</password>
+                    </pool>
+                </connection>
+                <statement>
+                    <sql><![CDATA[INSERT INTO z_COGenerator (chg_parent,resource_name,qb_parentid,qb_childid,qb_syncdatetime,rowguid) VALUES (?,?,?,?,?,?)]]></sql>
+                    <parameter expression="//jsonElement/chg_parent" type="VARCHAR"/>
+                    <parameter expression="//jsonElement/resource_name" type="VARCHAR"/>
+                    <parameter expression="//jsonElement/qb_parentid" type="INTEGER"/>
+                    <parameter expression="//jsonElement/qb_childid" type="INTEGER"/>
+                    <parameter expression="//jsonElement/qb_syncdatetime" type="TIMESTAMP"/>
+                    <parameter expression="//jsonElement/rowguid" type="VARCHAR"/>
+                </statement>
+            </dbreport>
+        </sequence>
+    </foreach>
+    <log category="TRACE" level="full">
+        <property name="AUDIT_REENTRY" value="Record inserted into db"/>
+    </log>
+</sequence>
