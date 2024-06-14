@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<esb:EsbDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:esb="http:///org/wso2/integrationstudio/eclipse/gmf/esb">
+  <server type="SEQUENCE">
+    <children xsi:type="esb:Sequences" name="EmailSQ">
+      <outputConnector>
+        <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.0/@inputConnector"/>
+      </outputConnector>
+      <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@outputConnector/@outgoingLink"/>
+      <mediatorFlow>
+        <children xsi:type="esb:PropertyMediator" description="SET MAILTO" value="Herbet.Mafabatho@dfafrica.co.za" newPropertyName="email">
+          <inputConnector incomingLinks="//@server/@children.0/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.1/@inputConnector"/>
+          </outputConnector>
+          <valueExpression prettyName="Property Expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078" supportJsonPaths="true"/>
+        </children>
+        <children xsi:type="esb:PropertyMediator" valueType="EXPRESSION" newPropertyName="user">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.2/@inputConnector"/>
+          </outputConnector>
+          <valueExpression propertyValue="fn:substring-before($ctx:email,'.')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078" supportJsonPaths="true"/>
+        </children>
+        <children xsi:type="esb:PropertyMediator" valueType="EXPRESSION" newPropertyName="User">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.1/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.3/@inputConnector"/>
+          </outputConnector>
+          <valueExpression propertyValue="concat(upper-case(substring($ctx:user, 1, 1)),substring($ctx:user, 2))" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078" supportJsonPaths="true"/>
+        </children>
+        <children xsi:type="esb:PayloadFactoryMediator" description="SET EMAIL CONTENT" payload="&lt;mailBody xmlns=&quot;http://ws.apache.org/ns/synapse&quot;>&lt;![CDATA[&#xA;                         &lt;p>Hi $4,&lt;br />&lt;br/>&#xA;        Updating Quickbase CRM sites&lt;br />&#xA;      &lt;table> &#xA;         &lt;tr>&#xA;           &lt;td>Number of Records Processed&lt;td>&amp;nbsp;:&amp;nbsp;&lt;/td>&lt;td>$1&lt;/td>&#xA;         &lt;/tr>&#xA;         &lt;tr>&#xA;           &lt;td>Number of Records Updated&lt;td>&amp;nbsp;:&amp;nbsp;&lt;/td>&lt;td>$2&lt;/td>&#xA;         &lt;/tr>&#xA;         &lt;tr>&#xA;           &lt;td>Number of Records failed&lt;td>&amp;nbsp;:&amp;nbsp;&lt;/td>&lt;td>$6&lt;/td>&#xA;         &lt;/tr>&#xA;        &lt;/table>Kind Regards&#xA;]]>&lt;/mailBody>">
+          <payloadKey prettyName="Sequence Key" keyName="Sequence Key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+          <args argumentType="Expression" evaluator="json">
+            <argumentExpression propertyValue="json-eval($ctx:noRecord)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+          </args>
+          <args argumentType="Expression" evaluator="json">
+            <argumentExpression propertyValue="json-eval($ctx:noUpdate)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+          </args>
+          <args argumentType="Expression" evaluator="json">
+            <argumentExpression propertyValue="json-eval($.noUnchangedRecords)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+          </args>
+          <args argumentType="Expression" evaluator="json">
+            <argumentExpression propertyValue="json-eval($ctx:User)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+          </args>
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.2/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.4/@inputConnector"/>
+          </outputConnector>
+        </children>
+        <children xsi:type="esb:LogMediator" description="AUDIT_TEMP_EXIT" logLevel="CUSTOM" logSeparator=",">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.3/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.5/@inputConnector"/>
+          </outputConnector>
+          <properties propertyName="PAYLOAD" propertyValueType="EXPRESSION" propertyValue="">
+            <propertyExpression propertyValue="json-eval($)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+          </properties>
+        </children>
+        <children xsi:type="esb:PayloadFactoryMediator" description="SET EMAIL PAYLOAD" payload="{&#xD;&#xA;&#x9;&#x9;&#x9;    &quot;mailTo&quot;: &quot;$1&quot;,&#xD;&#xA;&#x9;&#x9;&#x9;    &quot;mailSubject&quot;: &quot;Updating Quickbase CRMsites sync completed&quot;,&#xA;&#x9;&#x9;&#x9;    &quot;mailBody&quot;: &quot;$2&quot;,&#xD;&#xA;&#x9;&#x9;&#x9;    &quot;contentType&quot;:&quot;text/plain&quot;&#xD;&#xA;&#x9;&#x9;&#x9;}" mediaType="json">
+          <payloadKey prettyName="Sequence Key" keyName="Sequence Key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+          <args argumentType="Expression" evaluator="json">
+            <argumentExpression propertyValue="json-eval($ctx:email)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+          </args>
+          <args argumentType="Expression" evaluator="json">
+            <argumentExpression propertyValue="json-eval($.mailBody)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+          </args>
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.4/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.6/@inputConnector"/>
+          </outputConnector>
+        </children>
+        <children xsi:type="esb:PropertyGroupMediator">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.5/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.7/@inputConnector"/>
+          </outputConnector>
+          <properties propertyScope="transport" value="CALiveAPICreator prdlDGcoAKrrkSyed9IDRK2:1" newPropertyName="Authorization">
+            <inputConnector/>
+            <outputConnector/>
+            <valueExpression prettyName="Property Expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078" supportJsonPaths="true"/>
+          </properties>
+        </children>
+        <children xsi:type="esb:CallMediator" endpointType="REGISRTYKEY" initAxis2ClientOptions="true">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.6/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@inputConnector"/>
+          </outputConnector>
+          <endpointOutputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.7/@mediatorFlow/@children.0/@inputConnector"/>
+          </endpointOutputConnector>
+          <mediatorFlow>
+            <children xsi:type="esb:NamedEndpoint" name="Email_EP">
+              <reliableMessagingPolicy prettyName="ReliableMessagingPolicy Key" keyName="ReliableMessagingPolicy Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+              <securityPolicy prettyName="SecurityPolicy Key" keyName="SecurityPolicy Key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+              <inboundPolicy prettyName="inboundPolicy Key" keyName="inboundPolicy Key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+              <outboundPolicy prettyName="obPolicy Key" keyName="obPolicy Key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+              <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.7/@endpointOutputConnector/@outgoingLink"/>
+              <dynamicReferenceKey prettyName="Endpoint Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+              <staticReferenceKey prettyName="Endpoint Key" keyName="Endpoint Key" keyValue="Email_EP" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+            </children>
+          </mediatorFlow>
+          <endpointRegistrykey keyValue="Email_EP" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+          <sourceXPath prettyName="Endpoint XPath" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+        </children>
+        <children xsi:type="esb:RespondMediator">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.7/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@inputConnector"/>
+          </outputConnector>
+        </children>
+      </mediatorFlow>
+      <onError prettyName="OnError sequence Key" keyName="OnError sequence Key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000100000000078"/>
+    </children>
+  </server>
+</esb:EsbDiagram>

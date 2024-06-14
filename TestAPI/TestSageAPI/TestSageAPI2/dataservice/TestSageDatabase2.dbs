@@ -1,0 +1,65 @@
+<data transports="http https" serviceGroup="/getSage" serviceNamespace="" name="TestSageDatabase2">
+  <description>Expose Sage database</description>
+  <config id="SageIdentifier">
+    <property name="driverClassName">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+    <property name="url">jdbc:sqlserver://DFASQL-UAT01:1433;databaseName=DFACRM_UAT01</property>
+    <property name="username">Herbert.Mafabatho</property>
+    <property name="password">b4z4r39P58z9</property>
+  </config>
+  <query id="AccessBuildQuery" useConfig="SageIdentifier">
+    <sql><![CDATA[ SELECT
+			  DISTINCT dbo.AccessBuild.Access_AccessBuildID AS [Access_ID],
+			  dbo.AccessBuild.access_Site_Name,
+			  dbo.DFARegion.dfar_Name AS access_dfaregion,
+			  dbo.AccessBuild.access_DFABuildingNr,
+			  dbo.AccessBuild.access_Site_Address,
+			  dbo.AccessBuild.access_Site_Latitude,
+			  dbo.AccessBuild.access_Site_Longitude,
+			  accessbuild.access_infrastructureid,
+			  dbo.Company.Comp_IdCust,
+			  dbo.AccessBuild.access_QuickBaseRecordID,
+			  Case
+			    when dbo.AccessBuild.access_accessownership = 'Option1' then 'DFA'
+			    when dbo.AccessBuild.access_accessownership = 'Option2' then 'Client'
+			    when dbo.AccessBuild.access_accessownership = 'Option3' then 'Client'
+			    when dbo.AccessBuild.access_accessownership = 'Option4' then 'DFA'
+			  END AS [Ownership],
+			  Case
+			    when dbo.AccessBuild.access_accessownership = 'Option1' then 'DFA'
+			    when dbo.AccessBuild.access_accessownership = 'Option2' then 'Client'
+			    when dbo.AccessBuild.access_accessownership = 'Option3' then 'DFA'
+			    when dbo.AccessBuild.access_accessownership = 'Option4' then 'Client'
+			  END AS [Build Company]
+			FROM
+			  dbo.AccessBuild
+			  LEFT JOIN dbo.Company WITH (NOLOCK) ON dbo.Company.Comp_CompanyId = dbo.AccessBuild.Access_CompanyId
+			  AND dbo.Company.Comp_Deleted IS NULL
+			  LEFT OUTER JOIN dbo.DFARegion WITH (NOLOCK) ON dbo.AccessBuild.access_dfaregion = dbo.DFARegion.dfar_DFARegionID
+			where
+			  dbo.AccessBuild.access_Deleted IS NULL
+			  AND dbo.AccessBuild.Access_UpdatedDate > GETDATE() - 60]]></sql>
+    <result outputType="json">{"results": {
+    "result": [
+      {
+        "Access_ID": "$Access_ID",
+        "access_Site_Name": "$access_Site_Name",
+        "access_dfaregion": "$access_dfaregion",
+        "access_DFABuildingNr": "$access_DFABuildingNr",
+        "access_Site_Address": "$access_Site_Address",
+        "access_Site_Latitude": "$access_Site_Latitude",
+        "access_Site_Longitude": "$access_Site_Longitude",
+        "Ownership": "$Ownership",
+        "Build_Company": "$Build Company",
+        "access_infrastructureid": "$access_infrastructureid",
+        "Comp_IdCust": "$Comp_IdCust",
+        "access_QuickBaseRecordID": "$access_QuickBaseRecordID"
+      }
+    ]
+  }
+}</result>
+  </query>
+  <resource method="GET" path="/AccessBuild">
+    <description />
+    <call-query href="AccessBuildQuery" />
+  </resource>
+</data>
